@@ -37,5 +37,5 @@ public class GroceryTest {
     });
 
     assertEquals("Unit cannot be null or empty", exception.getMessage());
-  }
+  } //both tests should pass
 }

@@ -38,5 +38,31 @@ public class Grocery {
 
   }
 
+  public String getName() {
+    return name;
+  }
+
+  public double getQuantity() {
+    return quantity;
+  }
+
+  public String getUnit() {
+    return unit;
+  }
+
+  public Date getBestBefore() {
+    return bestBefore;
+  }
+
+  public double getPriceperUnit() {
+    return PriceperUnit;
+  }
+
+  // add a toString method to return a string representation of the object
+  @Override
+  public String toString() {
+    return quantity + " " + unit + " of " + name + ", best before: " + bestBefore
+        + ", price per unit: " + PriceperUnit;
+  }
 
 }

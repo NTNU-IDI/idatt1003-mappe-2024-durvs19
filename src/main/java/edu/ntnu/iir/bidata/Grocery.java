@@ -58,7 +58,7 @@ public class Grocery {
     return PriceperUnit;
   }
 
-  // add a toString method to return a string representation of the object
+  // add a toString method to return a string representation
   @Override
   public String toString() {
     return quantity + " " + unit + " of " + name + ", best before: " + bestBefore

@@ -24,7 +24,7 @@ public class GroceryTest {
     assertEquals(1.0, OrangeJuice.getQuantity(), 0.001);
     assertEquals("litre", OrangeJuice.getUnit());
     assertEquals(bestBefore, OrangeJuice.getBestBefore());
-    assertEquals(32.0, OrangeJuice.getPricePerUnit(), 0.001);
+    assertEquals(32.0, OrangeJuice.getpricePerUnit(), 0.001);
   }
 
   @Test

@@ -41,6 +41,7 @@ public class UserInterface {
       Grocery flour = new Grocery("Flour", 500.0, "grams", bestBefore, 20.0);
       Grocery sugar = new Grocery("Sugar", 1.0, "kg", bestBefore, 15.0);
 
+      //instead of having to call print multiple times
       printGroceryInformation(orangeJuice);
       printGroceryInformation(flour);
       printGroceryInformation(sugar);

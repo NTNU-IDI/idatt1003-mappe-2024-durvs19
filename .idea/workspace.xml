@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb65bd82-ecf8-47c1-984b-0a74c0ad4d93" name="Changes" comment="created user interface">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Main.java" afterDir="false" />
+    <list default="true" id="cb65bd82-ecf8-47c1-984b-0a74c0ad4d93" name="Changes" comment="tested the UI">
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Grocery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Grocery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GroceryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GroceryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +37,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "JUnit.GroceryTest.executor": "Run",
     "JUnit.GroceryTest.testGrocery.executor": "Run",
     "JUnit.GroceryTest.testInvalidGroceryUnit.executor": "Run",
@@ -122,7 +123,7 @@
       <workItem from="1730064773872" duration="260000" />
       <workItem from="1730065053406" duration="471000" />
       <workItem from="1731354080041" duration="13109000" />
-      <workItem from="1731762452985" duration="16398000" />
+      <workItem from="1731762452985" duration="16827000" />
     </task>
     <task id="LOCAL-00001" summary="Modify files">
       <option name="closed" value="true" />
@@ -212,7 +213,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731846343521</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="tested the UI">
+      <option name="closed" value="true" />
+      <created>1731846590259</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731846590259</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,7 +233,8 @@
     <MESSAGE value="implemented test class for grocery using junit (assert)" />
     <MESSAGE value="testclass for grocery class using junit" />
     <MESSAGE value="created user interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="created user interface" />
+    <MESSAGE value="tested the UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="tested the UI" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

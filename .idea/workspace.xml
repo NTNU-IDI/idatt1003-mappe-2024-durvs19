@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb65bd82-ecf8-47c1-984b-0a74c0ad4d93" name="Changes" comment="changed the @Override method so that it would no longer show the time it expires as well - just the date&#10;fixed the PricePerUnit variable name to make more readable">
+    <list default="true" id="cb65bd82-ecf8-47c1-984b-0a74c0ad4d93" name="Changes" comment="added javadoc comments according to checkstyle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Grocery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Grocery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GroceryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GroceryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +70,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GroceryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Foodwaste1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GroceryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GroceryTest.testGrocery" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Foodwaste1" />
       <option name="PACKAGE_NAME" value="" />
@@ -95,6 +102,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.GroceryTest" />
         <item itemvalue="JUnit.GroceryTest.testInvalidGroceryUnit" />
         <item itemvalue="JUnit.GroceryTest.testGrocery" />
       </list>
@@ -126,7 +134,7 @@
       <workItem from="1730065053406" duration="471000" />
       <workItem from="1731354080041" duration="13109000" />
       <workItem from="1731762452985" duration="17116000" />
-      <workItem from="1731847104059" duration="748000" />
+      <workItem from="1731847104059" duration="2845000" />
     </task>
     <task id="LOCAL-00001" summary="Modify files">
       <option name="closed" value="true" />
@@ -232,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731846873391</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added javadoc comments according to checkstyle">
+      <option name="closed" value="true" />
+      <created>1731847949330</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1731847949330</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +262,8 @@
     <MESSAGE value="created user interface" />
     <MESSAGE value="tested the UI" />
     <MESSAGE value="changed the @Override method so that it would no longer show the time it expires as well - just the date&#10;fixed the PricePerUnit variable name to make more readable" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed the @Override method so that it would no longer show the time it expires as well - just the date&#10;fixed the PricePerUnit variable name to make more readable" />
+    <MESSAGE value="added javadoc comments according to checkstyle" />
+    <option name="LAST_COMMIT_MESSAGE" value="added javadoc comments according to checkstyle" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -3,6 +3,8 @@ package edu.ntnu.iir.bidata;
 public class Main {
 
   public static void main(String[] args) {
-    System.out.println("Hello world!");
+    UserInterface ui = new UserInterface(); // create a new UserInterface object
+    ui.init(); // call the init method
+    ui.start(); // call the start method
   }
 }

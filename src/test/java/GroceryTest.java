@@ -24,11 +24,7 @@ public class GroceryTest {
     assertEquals(1.0, OrangeJuice.getQuantity(), 0.001);
     assertEquals("litre", OrangeJuice.getUnit());
     assertEquals(bestBefore, OrangeJuice.getBestBefore());
-<<<<<<< HEAD
-    assertEquals(32.0, OrangeJuice.getpricePerUnit(), 0.001);
-=======
     assertEquals(32.0, OrangeJuice.getPricePerUnit(), 0.001);
->>>>>>> c64195a (changed the @Override method so that it would no longer show the time it expires as well - just the date)
   }
 
   @Test

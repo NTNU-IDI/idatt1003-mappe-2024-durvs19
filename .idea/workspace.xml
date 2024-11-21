@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="cb65bd82-ecf8-47c1-984b-0a74c0ad4d93" name="Changes" comment="added javadoc comments according to checkstyle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/UserInterface.java" afterDir="false" />
+=======
+    <list default="true" id="cb65bd82-ecf8-47c1-984b-0a74c0ad4d93" name="Changes" comment="tested the UI">
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Grocery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Grocery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GroceryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GroceryTest.java" afterDir="false" />
+>>>>>>> c64195a (changed the @Override method so that it would no longer show the time it expires as well - just the date)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +41,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
@@ -54,6 +61,27 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "JUnit.GroceryTest.executor": "Run",
+    "JUnit.GroceryTest.testGrocery.executor": "Run",
+    "JUnit.GroceryTest.testInvalidGroceryUnit.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> c64195a (changed the @Override method so that it would no longer show the time it expires as well - just the date)
   }
 }</component>
   <component name="RunManager" selected="Application.Main">
@@ -133,8 +161,12 @@
       <workItem from="1730064773872" duration="260000" />
       <workItem from="1730065053406" duration="471000" />
       <workItem from="1731354080041" duration="13109000" />
+<<<<<<< HEAD
       <workItem from="1731762452985" duration="17116000" />
       <workItem from="1731847104059" duration="2845000" />
+=======
+      <workItem from="1731762452985" duration="16827000" />
+>>>>>>> c64195a (changed the @Override method so that it would no longer show the time it expires as well - just the date)
     </task>
     <task id="LOCAL-00001" summary="Modify files">
       <option name="closed" value="true" />
@@ -232,6 +264,7 @@
       <option name="project" value="LOCAL" />
       <updated>1731846590259</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00013" summary="changed the @Override method so that it would no longer show the time it expires as well - just the date&#10;fixed the PricePerUnit variable name to make more readable">
       <option name="closed" value="true" />
       <created>1731846873391</created>
@@ -249,6 +282,9 @@
       <updated>1731847949330</updated>
     </task>
     <option name="localTasksCounter" value="15" />
+=======
+    <option name="localTasksCounter" value="13" />
+>>>>>>> c64195a (changed the @Override method so that it would no longer show the time it expires as well - just the date)
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,9 +297,13 @@
     <MESSAGE value="testclass for grocery class using junit" />
     <MESSAGE value="created user interface" />
     <MESSAGE value="tested the UI" />
+<<<<<<< HEAD
     <MESSAGE value="changed the @Override method so that it would no longer show the time it expires as well - just the date&#10;fixed the PricePerUnit variable name to make more readable" />
     <MESSAGE value="added javadoc comments according to checkstyle" />
     <option name="LAST_COMMIT_MESSAGE" value="added javadoc comments according to checkstyle" />
+=======
+    <option name="LAST_COMMIT_MESSAGE" value="tested the UI" />
+>>>>>>> c64195a (changed the @Override method so that it would no longer show the time it expires as well - just the date)
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

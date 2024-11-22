@@ -4,15 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45cc7c67-1e15-4acf-a1bb-af055cfafa84" name="Changes" comment="restart">
+    <list default="true" id="45cc7c67-1e15-4acf-a1bb-af055cfafa84" name="Changes" comment="changed assertEquals() method from JUnit 4 to JUnit 5's assertEquals() method">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Fridge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Grocery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Grocery.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -28,25 +35,68 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.GroceryTest.executor": "Run",
+    "JUnit.GroceryTest.testConstructorValidInputs.executor": "Run",
+    "JUnit.GroceryTest.testSetQuantityValid.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main2",
     "kotlin-language-version-configured": "true",
+    "last_directory_selection": "/Users/durva/Documents/Foodwaste1/src/main/java/edu/ntnu/iir/bidata",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.GroceryTest">
+    <configuration name="GroceryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Foodwaste1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GroceryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GroceryTest.testConstructorValidInputs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Foodwaste1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GroceryTest" />
+      <option name="METHOD_NAME" value="testConstructorValidInputs" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GroceryTest.testSetQuantityValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Foodwaste1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GroceryTest" />
+      <option name="METHOD_NAME" value="testSetQuantityValid" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.GroceryTest" />
+        <item itemvalue="JUnit.GroceryTest.testConstructorValidInputs" />
+        <item itemvalue="JUnit.GroceryTest.testSetQuantityValid" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -66,7 +116,7 @@
       <updated>1732192657364</updated>
       <workItem from="1732192658426" duration="262000" />
       <workItem from="1732192934465" duration="2759000" />
-      <workItem from="1732209548136" duration="897000" />
+      <workItem from="1732209548136" duration="4140000" />
     </task>
     <task id="LOCAL-00001" summary="restart">
       <option name="closed" value="true" />
@@ -76,7 +126,31 @@
       <option name="project" value="LOCAL" />
       <updated>1732193003908</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="rewrote grocery class using lombok getter to reduce boilerplate code and added more JavaDoc comments">
+      <option name="closed" value="true" />
+      <created>1732210732860</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732210732860</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added a grocery test class">
+      <option name="closed" value="true" />
+      <created>1732235014139</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732235014139</updated>
+    </task>
+    <task id="LOCAL-00004" summary="changed assertEquals() method from JUnit 4 to JUnit 5's assertEquals() method">
+      <option name="closed" value="true" />
+      <created>1732235439878</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732235439878</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,6 +169,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="restart" />
-    <option name="LAST_COMMIT_MESSAGE" value="restart" />
+    <MESSAGE value="rewrote grocery class using lombok getter to reduce boilerplate code and added more JavaDoc comments" />
+    <MESSAGE value="added a grocery test class" />
+    <MESSAGE value="changed assertEquals() method from JUnit 4 to JUnit 5's assertEquals() method" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed assertEquals() method from JUnit 4 to JUnit 5's assertEquals() method" />
   </component>
 </project>

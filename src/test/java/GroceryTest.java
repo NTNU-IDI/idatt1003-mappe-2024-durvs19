@@ -1,7 +1,7 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
-import edu.ntnu.iir.bidata.Grocery;
+import edu.ntnu.iir.bidata.model.Grocery;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package edu.ntnu.iir.bidata;
+package edu.ntnu.iir.bidata.model;
 
 import java.time.LocalDate;
 import lombok.Getter;

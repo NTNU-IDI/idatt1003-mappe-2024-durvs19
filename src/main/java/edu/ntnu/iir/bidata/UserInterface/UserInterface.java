@@ -14,6 +14,9 @@ public class UserInterface {
     //placeholder for future setup logic (like initializing data structures, etc.)
   }
 
+  /**
+   * Starts the application by displaying the main user interface and handling user interactions.
+   */
   public void start() {
     System.out.println("Starting application...");
     //placeholder for future logic to start the application

@@ -17,7 +17,7 @@ public class Grocery {
   /** Expiry date of the grocery item. */
   private LocalDate expiryDate; // so its easier to calculate price of different quantities
 
-  // create a constructor for this
+  // creating a constructor for this
 
   /**
    * Constructs a new Grocery item.
@@ -36,8 +36,14 @@ public class Grocery {
     if (quantity < 0) {
       throw new IllegalArgumentException("Quantity cannot be negative");
     }
+    if (unit == null || unit.isEmpty()) {
+      throw new IllegalArgumentException("Unit cannot be null or empty");
+    }
     if (pricePerUnit < 0) {
       throw new IllegalArgumentException("Price per unit cannot be negative");
+    }
+    if (expiryDate == null) {
+      throw new IllegalArgumentException("Expiry date cannot be null");
     }
     this.name = name;
     this.quantity = quantity;
@@ -47,7 +53,7 @@ public class Grocery {
   }
 
   /**
-   * Sets the quantity of the grocery item.
+   * Sets the quantity of the grocery item (if f.ex you added 2 eggs separately it updates to 2).
    *
    * @param quantity the quantity to set
    * @throws IllegalArgumentException if the quantity is negative

@@ -11,23 +11,17 @@ import java.util.Optional;
 /** Service class for managing groceries and food storage in a fridge. */
 public class FridgeService {
   private Fridge fridge;
+
   private GroceryService groceryService;
 
-  /**
-   * Constructs a new FridgeService with the specified fridge and grocery service.
-   *
-   * @param fridge the fridge to be used
-   * @param groceryService the grocery service to be used
-   */
-  public FridgeService(Fridge fridge, GroceryService groceryService) {
-    this.fridge = fridge;
-    this.groceryService = groceryService;
+  public FridgeService(Fridge mockFridge, GroceryService mockGroceryService) {
+    this.fridge = mockFridge;
+    this.groceryService = mockGroceryService;
   }
 
-  /** Constructs a new FridgeService with a new fridge and grocery service. */
   public FridgeService() {
-    this.fridge = new Fridge();
-    this.groceryService = new GroceryService();
+    fridge = new Fridge();
+    groceryService = new GroceryService();
   }
 
   /**
@@ -72,15 +66,11 @@ public class FridgeService {
    */
   public boolean removeGrocery(String name, double quantity) {
     List<Grocery> groceries = fridge.getGroceriesPerCategory().get(name);
-    if (groceries == null) {
-      return false;
-    }
+    if (groceries == null) return false;
 
     // Calculate total quantity of the groceries
     double totalQuantity = groceries.stream().map(Grocery::getQuantity).reduce(0.0, Double::sum);
-    if (totalQuantity < quantity) {
-      return false;
-    }
+    if (totalQuantity < quantity) return false;
 
     // Remove the specified quantity
     double remainingQuantity = quantity;

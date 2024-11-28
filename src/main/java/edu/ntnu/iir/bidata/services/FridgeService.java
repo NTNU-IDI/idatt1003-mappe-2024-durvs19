@@ -10,15 +10,22 @@ import java.util.Optional;
 
 /** Service class for managing groceries and food storage in a fridge. */
 public class FridgeService {
-  private Fridge fridge;
+  private static Fridge fridge;
 
-  private GroceryService groceryService;
+  private static GroceryService groceryService;
 
+  /**
+   * Constructs a new FridgeService with the specified fridge and grocery service.
+   *
+   * @param mockFridge the fridge to be used
+   * @param mockGroceryService the grocery service to be used
+   */
   public FridgeService(Fridge mockFridge, GroceryService mockGroceryService) {
     this.fridge = mockFridge;
     this.groceryService = mockGroceryService;
   }
 
+  /** Constructs a new FridgeService with a new fridge and grocery service. */
   public FridgeService() {
     fridge = new Fridge();
     groceryService = new GroceryService();
@@ -32,7 +39,7 @@ public class FridgeService {
    *
    * @param grocery the grocery item to be added
    */
-  public void addGrocery(Grocery grocery) {
+  public static void addGrocery(Grocery grocery) {
     ArrayList<Grocery> groceryToBeAdded = new ArrayList<>();
     groceryToBeAdded.add(grocery);
     fridge
@@ -66,11 +73,15 @@ public class FridgeService {
    */
   public boolean removeGrocery(String name, double quantity) {
     List<Grocery> groceries = fridge.getGroceriesPerCategory().get(name);
-    if (groceries == null) return false;
+    if (groceries == null) {
+      return false;
+    }
 
     // Calculate total quantity of the groceries
     double totalQuantity = groceries.stream().map(Grocery::getQuantity).reduce(0.0, Double::sum);
-    if (totalQuantity < quantity) return false;
+    if (totalQuantity < quantity) {
+      return false;
+    }
 
     // Remove the specified quantity
     double remainingQuantity = quantity;

@@ -1,12 +1,9 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import edu.ntnu.iir.bidata.model.Grocery;
 import edu.ntnu.iir.bidata.services.GroceryService;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 
 public class GroceryServiceTest {
 

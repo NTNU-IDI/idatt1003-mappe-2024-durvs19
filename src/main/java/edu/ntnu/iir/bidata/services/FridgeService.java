@@ -71,7 +71,7 @@ public class FridgeService {
    * @param quantity the quantity to be removed
    * @return true if the specified quantity was removed successfully, false otherwise
    */
-  public boolean removeGrocery(String name, double quantity) {
+  public static boolean removeGrocery(String name, double quantity) {
     List<Grocery> groceries = fridge.getGroceriesPerCategory().get(name);
     if (groceries == null) {
       return false;
@@ -110,7 +110,7 @@ public class FridgeService {
    *
    * @return a list of all grocery items in the food storage
    */
-  public List<Grocery> getAllGroceries() {
+  public static List<Grocery> getAllGroceries() {
     return new ArrayList<>(
         fridge.getGroceriesPerCategory().values().stream()
             .flatMap(Collection::stream)
@@ -122,10 +122,10 @@ public class FridgeService {
    *
    * @return a list of expired grocery items
    */
-  public List<Grocery> getExpiredGroceries() {
+  public static List<Grocery> getExpiredGroceries() {
     return fridge.getGroceriesPerCategory().values().stream()
         .flatMap(Collection::stream)
-        .filter(groceryService::isExpired)
+        .filter(GroceryService::isExpired)
         .toList();
   }
 
@@ -134,7 +134,7 @@ public class FridgeService {
    *
    * @return the total value of all grocery items
    */
-  public double calculateTotalValue() {
+  public static double calculateTotalValue() {
     return fridge.getGroceriesPerCategory().values().stream()
         .flatMap(Collection::stream)
         .mapToDouble(groceryService::calculateValue)
@@ -146,10 +146,10 @@ public class FridgeService {
    *
    * @return the total value of all expired grocery items
    */
-  public double calculateTotalValueOfExpiredGroceries() {
+  public static double calculateTotalValueOfExpiredGroceries() {
     return fridge.getGroceriesPerCategory().values().stream()
         .flatMap(Collection::stream)
-        .filter(groceryService::isExpired)
+        .filter(GroceryService::isExpired)
         .mapToDouble(groceryService::calculateValue)
         .sum();
   }

@@ -65,8 +65,14 @@ public class UserInterface {
     while (!exit) {
       displayMenu();
       System.out.print("Select an option: ");
-      int choice = scanner.nextInt();
-      scanner.nextLine(); // Consume newline character
+      int choice = -1;
+      try {
+        choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline character
+      } catch (InputMismatchException e) {
+        System.out.println("Invalid input. Please enter a number.");
+        scanner.nextLine(); // Clear the invalid input
+      }
       try {
         switch (choice) {
           case 1:
@@ -105,7 +111,7 @@ public class UserInterface {
             break;
         }
       } catch (Exception e) {
-        e.printStackTrace();
+        System.out.println("An error occurred. Please try again.");
       }
     }
 

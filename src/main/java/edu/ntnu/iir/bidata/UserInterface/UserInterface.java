@@ -3,11 +3,12 @@ package edu.ntnu.iir.bidata.UserInterface;
 import edu.ntnu.iir.bidata.model.Grocery;
 import edu.ntnu.iir.bidata.model.Recipe;
 import edu.ntnu.iir.bidata.services.FridgeService;
-import edu.ntnu.iir.bidata.services.RecipeService;
 import edu.ntnu.iir.bidata.services.GroceryService;
+import edu.ntnu.iir.bidata.services.RecipeService;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -299,15 +300,34 @@ public class UserInterface {
       String ingredientName = scanner.nextLine();
       if (ingredientName.equalsIgnoreCase("done")) break;
 
-      System.out.print("Quantity: ");
-      double quantity = scanner.nextDouble();
-      scanner.nextLine(); // Consume newline
+      double quantity = 0.0;
+      while (true) {
+        try {
+          System.out.print("Quantity: ");
+          quantity = scanner.nextDouble();
+          scanner.nextLine(); // Consume the newline
+          break; // Exit the loop if input is valid
+        } catch (InputMismatchException e) {
+          System.out.println("Invalid input. Please enter a numeric value for quantity.");
+          scanner.nextLine(); // Clear the invalid input
+        }
+      }
 
       ingredients.put(ingredientName, quantity);
     }
 
-    System.out.print("Serves (number of people): ");
-    int serves = scanner.nextInt();
+    int serves = 0;
+    while (true) {
+      try {
+        System.out.print("Serves (number of people): ");
+        serves = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline
+        break; // Exit the loop if input is valid
+      } catch (InputMismatchException e) {
+        System.out.println("Invalid input. Please enter an integer value for serves.");
+        scanner.nextLine(); // Clear the invalid input
+      }
+    }
 
     RecipeService.addRecipe(new Recipe(name, description, procedure, ingredients, serves));
     System.out.println("Recipe added successfully.");

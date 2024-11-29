@@ -18,7 +18,7 @@ public class GroceryService {
    * {@code @example} Grocery grocery = new Grocery(); grocery.setExpiryDate(LocalDate.of(2021, 10, 1));
    *        boolean expired = groceryService.isExpired(grocery);
    */
-  public boolean isExpired(Grocery grocery) {
+  public static boolean isExpired(Grocery grocery) {
     return LocalDate.now().isAfter(grocery.getExpiryDate());
   }
 

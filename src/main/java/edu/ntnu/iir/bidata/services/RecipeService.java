@@ -16,9 +16,14 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 public class RecipeService {
-  private Cookbook cookbookForRecipes = new Cookbook();
-  private GroceryService groceryService = new GroceryService();
+  private static Cookbook cookbookForRecipes = new Cookbook();
+  private static GroceryService groceryService = new GroceryService();
 
+  /**
+   * Constructs a new RecipeService with the specified grocery service.
+   *
+   * @param mockGroceryService the grocery service to be used
+   */
   public RecipeService(GroceryService mockGroceryService) {
     groceryService = mockGroceryService;
   }
@@ -27,13 +32,10 @@ public class RecipeService {
    * Adds a new recipe to the list of recipes.
    *
    * @param recipe the recipe to be added
-   *     <p>Example usage:
-   *     <pre>
-   *     Recipe newRecipe = new Recipe("Pasta", ingredientsMap);
+   * @example Recipe newRecipe = new Recipe("Pasta", ingredientsMap);
    *     recipeService.addRecipe(newRecipe);
-   * </pre>
    */
-  public void addRecipe(Recipe recipe) {
+  public static void addRecipe(Recipe recipe) {
     cookbookForRecipes.getRecipes().add(recipe);
   }
 
@@ -41,12 +43,9 @@ public class RecipeService {
    * Returns the list of all recipes.
    *
    * @return the list of recipes
-   *     <p>Example usage:
-   *     <pre>
-   *     List&lt;Recipe&gt; allRecipes = recipeService.getRecipes();
-   * </pre>
+   * @example List&lt;Recipe&gt; allRecipes = recipeService.getRecipes();
    */
-  public List<Recipe> getRecipes() {
+  public static List<Recipe> getRecipes() {
     return cookbookForRecipes.getRecipes();
   }
 
@@ -57,13 +56,11 @@ public class RecipeService {
    * @param fridgeItems the list of groceries available in the fridge
    * @param includeExpiredGrocery whether to include expired groceries ("y" for yes, otherwise no)
    * @return the list of possible recipes that can be made
-   *     <p>Example usage:
-   *     <pre>
-   *     List&lt;Grocery&gt; fridgeItems = Arrays.asList(new Grocery("Tomato", 2, false));
-   *     List&lt;Recipe&gt; possibleRecipes = recipeService.getPossibleRecipes(fridgeItems, "n");
-   * </pre>
+   * @example List&lt;Grocery&gt; fridgeItems = Arrays.asList(new Grocery("Tomato", 2, false));
+   *@example List&lt;Recipe&gt; possibleRecipes = recipeService.getPossibleRecipes(fridgeItems,"n");
    */
-  public List<Recipe> getPossibleRecipes(List<Grocery> fridgeItems, String includeExpiredGrocery) {
+  public static List<Recipe> getPossibleRecipes(List<Grocery> fridgeItems,
+      String includeExpiredGrocery) {
 
     Map<String, List<Grocery>> expiredItemsIncludedBasedOnFlag =
         fridgeItems.stream()
@@ -72,7 +69,7 @@ public class RecipeService {
                   if (includeExpiredGrocery.equalsIgnoreCase("y")) {
                     return true;
                   } else {
-                    return !groceryService.isExpired(grocery);
+                    return !GroceryService.isExpired(grocery);
                   }
                 })
             .collect(Collectors.groupingBy(Grocery::getName));

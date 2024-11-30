@@ -415,6 +415,23 @@ public class UserInterface {
     }
   }
 
+  private static int readInt(Scanner scanner, String prompt) {
+    while (true) {
+      System.out.print(prompt);
+      String input = scanner.nextLine();
+      try {
+        int value = Integer.parseInt(input);
+        if (value <= 0) {
+          System.out.println("Please enter a positive integer.");
+          continue;
+        }
+        return value;
+      } catch (NumberFormatException e) {
+        System.out.println("Invalid input. Please enter an integer value.");
+      }
+    }
+  }
+
   private static void createSmoothie(Scanner scanner) {
     System.out.print("Enter smoothie name: ");
     String smoothieName = scanner.nextLine().trim();
@@ -446,6 +463,8 @@ public class UserInterface {
         LocalDate expiryDate = LocalDate.now().plusMonths(1);
         Grocery placeholder = new Grocery(name, quantity, unit, pricePerUnit, expiryDate);
         smoothie.addIngredient(placeholder);
+        FridgeService.addGrocery(placeholder);
+        System.out.println("Ingredient added to the fridge successfully.");
         continue;
       }
 
@@ -471,13 +490,15 @@ public class UserInterface {
       FridgeService.removeGrocery(grocery.getName(), quantity);
     }
 
+    int serves = readInt(scanner, "Enter number of servings: ");
+
     // Save the smoothie as a recipe
     RecipeService.addRecipe(new Recipe(
         smoothieName,
         smoothieDescription,
         "Blend all ingredients.",
         smoothie.getIngredientsMap(),
-        1 // You can modify this to allow user input for servings
+        serves
     ));
 
     System.out.println("Smoothie created successfully!");

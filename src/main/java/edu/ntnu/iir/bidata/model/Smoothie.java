@@ -15,13 +15,7 @@ public class Smoothie {
   /** Name of the smoothie. */
   private final String name;
   /** Description of the smoothie. */
-  private final String description;
-  /** Quantity of the smoothie (e.g., in liters). */
-  private double quantity;
-  /** Unit of measurement for the quantity (e.g., "liters"). */
-  private final String unit;
-  /** Price per unit of the smoothie (in NOK). */
-  private final double pricePerUnit;
+  private String description;
   /** Expiry date of the smoothie. */
   private final LocalDate expiryDate;
   /** List of grocery ingredients used in the smoothie. */
@@ -31,37 +25,22 @@ public class Smoothie {
    * Constructs a new Smoothie.
    *
    * @param name the name of the smoothie
-   * @param quantity the quantity of the smoothie
-   * @param unit the unit of the smoothie
-   * @param pricePerUnit the price per unit of the smoothie
+   * @param description the description of the smoothie
    * @param expiryDate the expiry date of the smoothie
    * @throws IllegalArgumentException if any of the parameters are invalid
    */
-  public Smoothie(String name, double quantity, String unit, double pricePerUnit, LocalDate expiryDate) {
+  public Smoothie(String name, String description, LocalDate expiryDate) {
     if (name == null || name.isEmpty()) {
       throw new IllegalArgumentException("Name cannot be null or empty");
-    }
-    if (quantity < 0) {
-      throw new IllegalArgumentException("Quantity cannot be negative");
-    }
-    if (unit == null || unit.isEmpty()) {
-      throw new IllegalArgumentException("Unit cannot be null or empty");
-    }
-    if (pricePerUnit < 0) {
-      throw new IllegalArgumentException("Price per unit cannot be negative");
     }
     if (expiryDate == null) {
       throw new IllegalArgumentException("Expiry date cannot be null");
     }
     this.name = name;
-    this.description = "";
-    this.quantity = quantity;
-    this.unit = unit;
-    this.pricePerUnit = pricePerUnit;
+    this.description = description != null ? description : "";
     this.expiryDate = expiryDate;
     this.ingredients = new ArrayList<>();
   }
-
 
   /**
    * Adds an ingredient to the smoothie.
@@ -77,20 +56,7 @@ public class Smoothie {
   }
 
   /**
-   * Sets the quantity of the smoothie.
-   *
-   * @param quantity the new quantity to set
-   * @throws IllegalArgumentException if the quantity is negative
-   */
-  public void setQuantity(double quantity) {
-    if (quantity < 0) {
-      throw new IllegalArgumentException("Quantity cannot be negative");
-    }
-    this.quantity = quantity;
-  }
-
-  /**
-   * Calculates the total price of the smoothie.
+   * Calculates the total price of the smoothie based on its ingredients.
    *
    * @return the total price of the smoothie
    */
@@ -99,16 +65,13 @@ public class Smoothie {
         .mapToDouble(ingredient -> ingredient.getQuantity() * ingredient.getPricePerUnit())
         .sum();
   }
-  /**
-   * Converts the smoothie ingredients to a map for recipe storage.
-   *
-   * @return a map of ingredient names to quantities
-   */
+
   public Map<String, Double> getIngredientsMap() {
     return ingredients.stream()
-        .collect(Collectors.groupingBy(
+        .collect(Collectors.toMap(
             Grocery::getName,
-            Collectors.summingDouble(Grocery::getQuantity)
+            Grocery::getQuantity,
+            Double::sum
         ));
   }
 
@@ -120,8 +83,6 @@ public class Smoothie {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("Smoothie: ").append(name).append("\n");
-    sb.append("Quantity: ").append(quantity).append(" ").append(unit).append("\n");
-    sb.append("Price per unit: NOK ").append(pricePerUnit).append("\n");
     sb.append("Expiry date: ").append(expiryDate).append("\n");
     sb.append("Ingredients:\n");
     for (Grocery ingredient : ingredients) {
@@ -130,5 +91,4 @@ public class Smoothie {
     sb.append("Total Price: NOK ").append(String.format("%.2f", calculateTotalPrice()));
     return sb.toString();
   }
-
 }

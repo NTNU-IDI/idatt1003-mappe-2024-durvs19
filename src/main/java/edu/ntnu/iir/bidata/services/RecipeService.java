@@ -99,7 +99,7 @@ public class RecipeService {
 
   public static List<Recipe> getSmoothieRecipes() {
     return cookbookForRecipes.getRecipes().stream()
-        .filter(recipe -> recipe.getDescription().toLowerCase().contains("smoothie"))
+        .filter(recipe -> recipe.getDescription().toLowerCase().contains("smoothie") || recipe.getDescription().toLowerCase().contains("milkshake"))
         .toList();
   }
 }

@@ -509,8 +509,38 @@ public class UserInterface {
     List<Recipe> smoothieRecipes = RecipeService.getSmoothieRecipes();
     if (smoothieRecipes.isEmpty()) {
       System.out.println("No smoothie recipes found.");
-    } else {
-      smoothieRecipes.forEach(System.out::println);
+      return;
+    }
+
+    for (int i = 0; i < smoothieRecipes.size(); i++) {
+      Recipe recipe = smoothieRecipes.get(i);
+      System.out.printf("%d. %s: %s%n", i + 1, recipe.getName(), recipe.getDescription());
+    }
+    Scanner scanner = new Scanner(System.in);
+    while (true) {
+      System.out.print("\nEnter the number of the smoothie to view details (or type '0' to return to the main menu): ");
+      String input = scanner.nextLine().trim();
+
+      int selection;
+      try {
+        selection = Integer.parseInt(input);
+      } catch (NumberFormatException e) {
+        System.out.println("Invalid input. Please enter a valid number.");
+        continue;
+      }
+
+      if (selection == 0) {
+        // Return to main menu
+        break;
+      }
+
+      if (selection < 1 || selection > smoothieRecipes.size()) {
+        System.out.println("Invalid selection. Please choose a number from the list.");
+        continue;
+      }
+      Recipe selectedRecipe = smoothieRecipes.get(selection - 1);
+      System.out.println("\n--- Smoothie Details ---");
+      System.out.println(selectedRecipe.toString());
     }
   }
 }

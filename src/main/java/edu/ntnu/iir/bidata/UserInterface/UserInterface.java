@@ -74,6 +74,8 @@ public class UserInterface {
             "Mix and cook on a skillet.",
             pancakeIngredients,
             4));
+
+    addSampleSmoothieRecipes();
   }
 
 /**
@@ -106,7 +108,7 @@ private static void addSampleSmoothieRecipes() {
   );
   RecipeService.addRecipe(
       new Recipe(
-          "Avo shake",
+          "Avo shake smoothie",
           "A creamy green smoothie to delight your taste buds.",
           "Blend all ingredients until smooth.",
           avoShakeIngredients,

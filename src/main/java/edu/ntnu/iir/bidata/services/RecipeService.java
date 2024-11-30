@@ -90,4 +90,16 @@ public class RecipeService {
                         }))
         .toList();
   }
+
+  /**
+   * Returns a list of all smoothie recipes.
+   *
+   * @return the list of smoothie recipes
+   */
+
+  public static List<Recipe> getSmoothieRecipes() {
+    return cookbookForRecipes.getRecipes().stream()
+        .filter(recipe -> recipe.getDescription().toLowerCase().contains("smoothie"))
+        .toList();
+  }
 }

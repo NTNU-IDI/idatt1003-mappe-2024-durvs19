@@ -33,9 +33,37 @@ public class UserInterface {
    */
   public static void init() {
     // Add some sample groceries to the fridge
-    FridgeService.addGrocery(new Grocery("Milk", 2, "liters", 15, LocalDate.now().plusDays(5)));
-    FridgeService.addGrocery(new Grocery("Eggs", 12, "pieces", 2, LocalDate.now().plusDays(10)));
+    FridgeService.addGrocery(new Grocery("Milk", 2, "liters", 20, LocalDate.now().plusDays(9)));
+    FridgeService.addGrocery(new Grocery("Eggs", 12, "pieces", 10, LocalDate.now().plusDays(10)));
     FridgeService.addGrocery(new Grocery("Flour", 1, "kg", 20, LocalDate.now().plusMonths(6)));
+    FridgeService.addGrocery(new Grocery("Onion", 6, "pieces", 9, LocalDate.now().plusMonths(1)));
+    FridgeService.addGrocery(new Grocery("Potato", 10, "pieces", 11, LocalDate.now().plusMonths(1)));
+    FridgeService.addGrocery(new Grocery("Cheese", 0.5, "kg", 32, LocalDate.now().plusWeeks(3)));
+
+    //adding some expired groceries:
+    FridgeService.addGrocery(new Grocery("Bread", 1, "loaf", 29, LocalDate.now().minusDays(3))); // Expired 3 days ago
+    FridgeService.addGrocery(new Grocery("Milk", 1, "litres", 20, LocalDate.now().minusDays(2)));
+    FridgeService.addGrocery(new Grocery("Tomato", 3, "pieces", 8, LocalDate.now().minusDays(4)));
+    FridgeService.addGrocery(new Grocery("Yoghurt", 0.25, "kg", 16, LocalDate.now().minusDays(3)));
+    FridgeService.addGrocery(new Grocery("eggs", 2, "pieces", 10, LocalDate.now().minusDays(4)));
+
+    //adding some groceries for smoothies:
+    FridgeService.addGrocery(new Grocery("Strawberries", 2, "cups", 14, LocalDate.now().plusDays(7)));
+    FridgeService.addGrocery(new Grocery("Banana", 6, "pieces", 8, LocalDate.now().plusDays(5)));
+    FridgeService.addGrocery(new Grocery("Yoghurt", 0.5, "kg", 22, LocalDate.now().plusDays(10)));
+    FridgeService.addGrocery(new Grocery("Honey", 0.5, "tablespoons", 5, LocalDate.now().plusMonths(6)));
+    FridgeService.addGrocery(new Grocery("Spinach", 1, "cups", 7, LocalDate.now().plusDays(7)));
+    FridgeService.addGrocery(new Grocery("Avocado", 4, "pieces", 9, LocalDate.now().plusDays(12)));
+    FridgeService.addGrocery(new Grocery("Green Apple", 4, "pieces", 12, LocalDate.now().plusDays(10)));
+    FridgeService.addGrocery(new Grocery("Ginger", 3, "pieces", 6, LocalDate.now().plusDays(20)));
+    FridgeService.addGrocery(new Grocery("Lemon Juice", 0.5, "tablespoons", 4, LocalDate.now().plusMonths(6)));
+    FridgeService.addGrocery(new Grocery("Jack fruit", 2, "cups", 14, LocalDate.now().plusWeeks(2)));
+    FridgeService.addGrocery(new Grocery("Java plum", 5, "cups", 16, LocalDate.now().plusWeeks(2)));
+    FridgeService.addGrocery(new Grocery("Mango", 4, "pieces", 10, LocalDate.now().plusDays(7)));
+    FridgeService.addGrocery(new Grocery("Pineapple", 1, "cups", 15, LocalDate.now().plusDays(9)));
+    FridgeService.addGrocery(new Grocery("Coconut Water", 1, "cups", 12, LocalDate.now().plusMonths(6)));
+    FridgeService.addGrocery(new Grocery("Chia Seeds", 0.2, "tablespoons", 5, LocalDate.now().plusMonths(6)));
+
 
     // Add some sample recipes to the cookbook
     Map<String, Double> pancakeIngredients = Map.of("Milk", 1.5, "Eggs", 2.0, "Flour", 0.5);
@@ -48,7 +76,60 @@ public class UserInterface {
             4));
   }
 
-  /**
+/**
+ * Adds predefined smoothie recipes to the recipe book.
+ *
+ * <p>This method creates and adds sample smoothie recipes to the RecipeService.
+ */
+private static void addSampleSmoothieRecipes() {
+  // Sample Smoothie 1: Strawberry Banana Smoothie
+  Map<String, Double> strawberryBananaIngredients = Map.of(
+      "Strawberries", 1.0, // in cups
+      "Banana", 1.0,       // whole
+      "Yogurt", 0.5,        // in cups
+      "Honey", 0.2          // in tablespoons
+  );
+  RecipeService.addRecipe(
+      new Recipe(
+          "Strawberry Banana Smoothie",
+          "A sweet smoothie with strawberries and bananas.",
+          "Blend all ingredients until smooth.",
+          strawberryBananaIngredients,
+          2));
+
+  // Sample Smoothie 2: Avo shake
+  Map<String, Double> avoShakeIngredients = Map.of(
+      "avocado", 2.0,    // pieces
+      "banana", 1.0,        // pieces
+      "milk", 0.3,          // in litres
+      "cinnamon", 1.0         // tsp
+  );
+  RecipeService.addRecipe(
+      new Recipe(
+          "Avo shake",
+          "A creamy green smoothie to delight your taste buds.",
+          "Blend all ingredients until smooth.",
+          avoShakeIngredients,
+          2));
+
+  // Sample Smoothie 3: Tropical Mango Smoothie
+  Map<String, Double> MangoLassiIngredients = Map.of(
+      "Mango", 1.0,       // pieces
+      "Milk", 0.3,          // in litres
+      "yoghurt", 0.5,       // in cups
+      "sugar", 0.1            // tbsp
+  );
+  RecipeService.addRecipe(
+      new Recipe(
+          "Mango Lassi Milkshake",
+          "A refreshing indian style mango milkshake.",
+          "Blend all ingredients until smooth.",
+          MangoLassiIngredients,
+          2));
+}
+
+
+/**
    * Start the console menu for user interaction.
    *
    * <p>This method displays the main menu and processes user inputs to perform various actions.
@@ -198,17 +279,23 @@ public class UserInterface {
    */
 
   private static void removeGrocery(Scanner scanner) {
+    try {
     System.out.print("Enter grocery name to remove: ");
     String name = scanner.nextLine();
 
     System.out.print("Enter quantity to remove: ");
     double quantity = scanner.nextDouble();
+    scanner.nextLine();
 
     boolean success = FridgeService.removeGrocery(name, quantity);
     if (success) {
       System.out.println("Grocery removed successfully.");
     } else {
       System.out.println("Failed to remove grocery. Check the name and quantity.");
+    }
+    } catch (InputMismatchException e) {
+      System.out.println("Invalid input. Please ensure you enter valid details.");
+      scanner.nextLine(); // Clear invalid input
     }
   }
   /**

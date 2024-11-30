@@ -33,7 +33,7 @@ public class UserInterface {
    */
   public static void init() {
     // Add some sample groceries to the fridge
-    FridgeService.addGrocery(new Grocery("Milk", 2, "liters", 20, LocalDate.now().plusDays(9)));
+    FridgeService.addGrocery(new Grocery("Milk", 1, "liters", 20, LocalDate.now().plusDays(9)));
     FridgeService.addGrocery(new Grocery("Eggs", 12, "pieces", 10, LocalDate.now().plusDays(10)));
     FridgeService.addGrocery(new Grocery("Flour", 1, "kg", 20, LocalDate.now().plusMonths(6)));
     FridgeService.addGrocery(new Grocery("Onion", 6, "pieces", 9, LocalDate.now().plusMonths(1)));
@@ -51,19 +51,10 @@ public class UserInterface {
     FridgeService.addGrocery(new Grocery("Strawberries", 2, "cups", 14, LocalDate.now().plusDays(7)));
     FridgeService.addGrocery(new Grocery("Banana", 6, "pieces", 8, LocalDate.now().plusDays(5)));
     FridgeService.addGrocery(new Grocery("Yoghurt", 0.5, "kg", 22, LocalDate.now().plusDays(10)));
-    FridgeService.addGrocery(new Grocery("Honey", 0.5, "tablespoons", 5, LocalDate.now().plusMonths(6)));
-    FridgeService.addGrocery(new Grocery("Spinach", 1, "cups", 7, LocalDate.now().plusDays(7)));
     FridgeService.addGrocery(new Grocery("Avocado", 4, "pieces", 9, LocalDate.now().plusDays(12)));
-    FridgeService.addGrocery(new Grocery("Green Apple", 4, "pieces", 12, LocalDate.now().plusDays(10)));
     FridgeService.addGrocery(new Grocery("Ginger", 3, "pieces", 6, LocalDate.now().plusDays(20)));
     FridgeService.addGrocery(new Grocery("Lemon Juice", 0.5, "tablespoons", 4, LocalDate.now().plusMonths(6)));
-    FridgeService.addGrocery(new Grocery("Jack fruit", 2, "cups", 14, LocalDate.now().plusWeeks(2)));
-    FridgeService.addGrocery(new Grocery("Java plum", 5, "cups", 16, LocalDate.now().plusWeeks(2)));
     FridgeService.addGrocery(new Grocery("Mango", 4, "pieces", 10, LocalDate.now().plusDays(7)));
-    FridgeService.addGrocery(new Grocery("Pineapple", 1, "cups", 15, LocalDate.now().plusDays(9)));
-    FridgeService.addGrocery(new Grocery("Coconut Water", 1, "cups", 12, LocalDate.now().plusMonths(6)));
-    FridgeService.addGrocery(new Grocery("Chia Seeds", 0.2, "tablespoons", 5, LocalDate.now().plusMonths(6)));
-
 
     // Add some sample recipes to the cookbook
     Map<String, Double> pancakeIngredients = Map.of("Milk", 1.5, "Eggs", 2.0, "Flour", 0.5);
@@ -74,6 +65,17 @@ public class UserInterface {
             "Mix and cook on a skillet.",
             pancakeIngredients,
             4));
+    Map<String, Double> paneerIngreidents = Map.of("Milk", 2.0, "lemon juice", 0.5);
+    RecipeService.addRecipe(
+        new Recipe(
+            "Paneer (Indian Cheese)",
+            "Delicious indian cheese made from milk and lemon juice, saves expired milk",
+            "heat milk to just below boiling point, turn stove off and add lemon juice"
+                + "and stir. milk will begin to curdle. strain curdled milk through a cheesecloth"
+                + "and rinse with cold water. hang the cheesecloth for 30 minutes "
+                + "to drain excess water",
+            paneerIngreidents,
+            5));
 
     addSampleSmoothieRecipes();
   }
@@ -150,12 +152,21 @@ private static void addSampleSmoothieRecipes() {
       displayMenu();
       System.out.print("Select an option: ");
       int choice = -1;
-      try {
-        choice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline character
-      } catch (InputMismatchException e) {
-        System.out.println("Invalid input. Please enter a number.");
-        scanner.nextLine(); // Clear the invalid input
+      while (true) {
+        System.out.print("Select an option: ");
+        String input = scanner.nextLine().trim();
+
+        if (input.isEmpty()) {
+          System.out.println("Input cannot be empty. Please enter a number.");
+          continue;
+        }
+
+        try {
+          choice = Integer.parseInt(input);
+          break; // Exit the loop if input is valid
+        } catch (NumberFormatException e) {
+          System.out.println("Invalid input. Please enter a valid number.");
+        }
       }
       try {
         switch (choice) {
@@ -522,75 +533,89 @@ private static void addSampleSmoothieRecipes() {
   }
 
   private static void createSmoothie(Scanner scanner) {
-    System.out.print("Enter smoothie name: ");
-    String smoothieName = scanner.nextLine().trim();
-    System.out.print("Enter smoothie description: ");
-    String smoothieDescription = scanner.nextLine().trim();
+    try {
+      System.out.print("Enter smoothie name: ");
+      String smoothieName = scanner.nextLine().trim();
 
-    Smoothie smoothie = new Smoothie(smoothieName, 0, "", 0, LocalDate.now().plusWeeks(2));
-    boolean addingIngredients = true;
-
-    while (addingIngredients) {
-      System.out.print("Enter ingredient name (or type 'done' to finish): ");
-      String name = scanner.nextLine().trim();
-      if (name.equalsIgnoreCase("done")) {
-        addingIngredients = false;
-        continue;
+      if (!smoothieName.toLowerCase().contains("smoothie")) {
+        smoothieName += " Smoothie";
       }
 
-      List<Grocery> groceries = FridgeService.getAllGroceries().stream()
-          .filter(g -> g.getName().equalsIgnoreCase(name))
-          .toList();
 
-      if (groceries.isEmpty()) {
-        System.out.println("Grocery not found. Adding to recipe for future use.");
+      System.out.print("Enter smoothie description: ");
+      String smoothieDescription = scanner.nextLine().trim();
+
+      // Create Smoothie without unit and pricePerUnit
+      Smoothie smoothie = new Smoothie(smoothieName, smoothieDescription, LocalDate.now().plusWeeks(2));
+
+      String ingredientName;
+      do {
+        System.out.print("Enter ingredient name (or type 'done' to finish): ");
+        ingredientName = scanner.nextLine().trim();
+
+        if (ingredientName.equalsIgnoreCase("done")) {
+          break;
+        }
+
+        // Find matching groceries with streams
+        String finalIngredientName = ingredientName;
+        Grocery matchingGrocery = FridgeService.getAllGroceries().stream()
+            .filter(g -> g.getName().equalsIgnoreCase(finalIngredientName))
+            .findFirst()
+            .orElse(null);
+
+        if (matchingGrocery == null) {
+          System.out.println("Grocery not found. Adding a placeholder ingredient.");
+          double quantity = readDouble(scanner, "Enter quantity to use: ");
+          // Removed unit prompt
+          double pricePerUnit = readDouble(scanner, "Enter price per unit (in NOK): ");
+          LocalDate expiryDate = LocalDate.now().plusMonths(1);
+
+          // Assign a default unit
+          String defaultUnit = "units"; // Adjust as needed
+          Grocery placeholder = new Grocery(ingredientName, quantity, defaultUnit, pricePerUnit, expiryDate);
+          smoothie.addIngredient(placeholder);
+          FridgeService.addGrocery(placeholder);
+
+          System.out.println("Placeholder ingredient added.");
+          continue;
+        }
+
+        // Ask for quantity and validate
         double quantity = readDouble(scanner, "Enter quantity to use: ");
-        System.out.print("Enter unit for " + name + " (e.g., liters, kg, pieces): ");
-        String unit = scanner.nextLine().trim();
-        double pricePerUnit = readDouble(scanner, "Enter price per unit (in NOK): ");
-        // Set expiryDate to a default value, e.g., one month from now
-        LocalDate expiryDate = LocalDate.now().plusMonths(1);
-        Grocery placeholder = new Grocery(name, quantity, unit, pricePerUnit, expiryDate);
-        smoothie.addIngredient(placeholder);
-        FridgeService.addGrocery(placeholder);
-        System.out.println("Ingredient added to the fridge successfully.");
-        continue;
-      }
+        if (quantity > matchingGrocery.getQuantity()) {
+          System.out.println("Not enough quantity available. Skipping this ingredient.");
+          continue;
+        }
 
-      Grocery grocery = groceries.get(0); // Assuming we take the first match
-      double quantity = readDouble(scanner, "Enter quantity to use: ");
+        // Add valid ingredient and update the fridge
+        Grocery ingredientToAdd = new Grocery(
+            matchingGrocery.getName(),
+            quantity,
+            matchingGrocery.getUnit(),
+            matchingGrocery.getPricePerUnit(),
+            matchingGrocery.getExpiryDate()
+        );
+        smoothie.addIngredient(ingredientToAdd);
+        FridgeService.removeGrocery(matchingGrocery.getName(), quantity);
+      } while (!ingredientName.equalsIgnoreCase("done"));
 
-      if (quantity > grocery.getQuantity()) {
-        System.out.println("Not enough quantity available. Please try again.");
-        continue;
-      }
+      // Save smoothie as a recipe
+      RecipeService.addRecipe(new Recipe(
+          smoothieName,
+          smoothieDescription,
+          "Blend all ingredients.",
+          smoothie.getIngredientsMap(),
+          1 // Assuming serves one person
+      ));
 
-      // Create a new Grocery object for the ingredient with the specified quantity
-      Grocery ingredient = new Grocery(
-          grocery.getName(),
-          quantity,
-          grocery.getUnit(),
-          grocery.getPricePerUnit(),
-          grocery.getExpiryDate()
-      );
-      smoothie.addIngredient(ingredient);
-
-      // Update the quantity of the grocery in the fridge
-      FridgeService.removeGrocery(grocery.getName(), quantity);
+      System.out.println("Smoothie created successfully:\n" + smoothie);
+    } catch (Exception e) {
+      System.out.println("Error creating smoothie: " + e.getMessage());
     }
-
-    // Save the smoothie as a recipe
-    RecipeService.addRecipe(new Recipe(
-        smoothieName,
-        smoothieDescription,
-        "Blend all ingredients.",
-        smoothie.getIngredientsMap(),
-        1 // need to change
-    ));
-
-    System.out.println("Smoothie created successfully!");
-    System.out.println(smoothie);
   }
+
+
 
 
   private static void viewAllSmoothieRecipes() {

@@ -490,15 +490,13 @@ public class UserInterface {
       FridgeService.removeGrocery(grocery.getName(), quantity);
     }
 
-    int serves = readInt(scanner, "Enter number of servings: ");
-
     // Save the smoothie as a recipe
     RecipeService.addRecipe(new Recipe(
         smoothieName,
         smoothieDescription,
         "Blend all ingredients.",
         smoothie.getIngredientsMap(),
-        serves
+        1 // need to change
     ));
 
     System.out.println("Smoothie created successfully!");

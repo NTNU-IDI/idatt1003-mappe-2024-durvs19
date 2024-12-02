@@ -164,7 +164,7 @@ public class UserInterface {
 
     while (!exit) {
       displayMenu();
-      int choice = InputUtils.readValidatedInt(scanner, "Select an option: ",1, 13);
+      int choice = InputUtils.readValidatedInt(scanner, "Select an option: ",1, 14);
       try {
         switch (choice) {
           case 1:
@@ -195,15 +195,18 @@ public class UserInterface {
             viewAllRecipes();
             break;
           case 10:
-            viewPossibleRecipes(scanner);
+            removeRecipe(scanner);
             break;
           case 11:
-            createSmoothie(scanner);
+            viewPossibleRecipes(scanner);
             break;
           case 12:
-            viewAllSmoothieRecipes();
+            createSmoothie(scanner);
             break;
           case 13:
+            viewAllSmoothieRecipes();
+            break;
+          case 14:
             System.out.println("Exiting application. Goodbye!");
             exit = true;
             break;
@@ -234,17 +237,18 @@ public class UserInterface {
    */
   private static void displayMenu() {
     System.out.println("\n========== In-House Food Waste Management ==========");
-    System.out.println(" 1. Add Grocery           |  7. Total Value (Expired)");
-    System.out.println(" 2. Remove Grocery        |  8. Add Recipe");
-    System.out.println(" 3. Find Grocery by Name  |  9. View All Recipes");
-    System.out.println(" 4. View All Groceries    | 10. View Possible Recipes");
+    System.out.println(" 1. Add Grocery           |  8. Add Recipe");
+    System.out.println(" 2. Remove Grocery        |  9. View All Recipes");
+    System.out.println(" 3. Find Grocery by Name  | 10. Remove Recipe");
+    System.out.println(" 4. View All Groceries    | 11. View Possible Recipes");
     System.out.println(" 5. Expired Groceries     |     with Current Groceries");
-    System.out.println(" 6. Total Value (All)     | 11. Create Smoothie");
-    System.out.println("                          | 12. View Smoothie Recipes");
-    System.out.println("                          | 13. Exit");
+    System.out.println(" 6. Total Value (All)     | 12. Create Smoothie");
+    System.out.println(" 7. Total Value (Expired) | 13. View Smoothie Recipes");
+    System.out.println("                          | 14. Exit");
     System.out.println("====================================================");
-    System.out.println("Choose between (1-13): ");
+    System.out.println("Choose between (1-14): ");
   }
+
 
 
 
@@ -460,6 +464,18 @@ public class UserInterface {
    * FoodWasteApp.viewAllRecipes();
    * }</pre>
    */
+
+  private static void removeRecipe(Scanner scanner) {
+    String recipeName = InputUtils.readNonEmptyString(scanner, "Enter the name of the recipe to remove: ");
+    boolean success = RecipeService.removeRecipe(recipeName);
+
+    if (success) {
+      System.out.println("Recipe \"" + recipeName + "\" has been removed successfully.");
+    } else {
+      System.out.println("Recipe \"" + recipeName + "\" does not exist and cannot be removed.");
+    }
+  }
+
 
   private static void viewAllRecipes() {
     System.out.println("\n--- All Recipes ---");

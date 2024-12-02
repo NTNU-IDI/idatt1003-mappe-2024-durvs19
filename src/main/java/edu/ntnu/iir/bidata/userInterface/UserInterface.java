@@ -231,20 +231,20 @@ public class UserInterface {
    * }</pre>
    */
   private static void displayMenu() {
-    System.out.println("\n--- In-House Food Waste Management Menu ---");
-    System.out.println("1. Add Grocery");
-    System.out.println("2. Remove Grocery");
-    System.out.println("3. View All Groceries");
-    System.out.println("4. View Only Expired Groceries");
-    System.out.println("5. Calculate Total Value of Groceries");
-    System.out.println("6. Calculate Total Value of Expired Groceries");
-    System.out.println("7. Add Recipe");
-    System.out.println("8. View All Recipes");
-    System.out.println("9. View Possible Recipes with Current Groceries");
-    System.out.println("10. Create Smoothie");
-    System.out.println("11. View All Smoothie Recipes");
-    System.out.println("12. Exit");
+    System.out.println("\n========== In-House Food Waste Management ==========");
+    System.out.println(" 1. Add Grocery           |  7. Add Recipe");
+    System.out.println(" 2. Remove Grocery        |  8. View All Recipes");
+    System.out.println(" 3. View All Groceries    |  9. View Possible Recipes");
+    System.out.println(" 4. Expired Groceries     |     with Current Groceries");
+    System.out.println(" 5. Total Value (All)     |                             ");
+    System.out.println(" 6. Total Value (Expired) | 10. Create Smoothie");
+    System.out.println("                          | 11. View Smoothie Recipes");
+    System.out.println("                          | 12. Exit");
+    System.out.println("====================================================");
+    System.out.println("Choose between (1-12): ");
   }
+
+
 
   /**
    * Add a new grocery item to the fridge.

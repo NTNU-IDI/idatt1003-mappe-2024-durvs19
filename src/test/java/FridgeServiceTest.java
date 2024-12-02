@@ -1,11 +1,17 @@
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 import edu.ntnu.iir.bidata.model.Fridge;
 import edu.ntnu.iir.bidata.model.Grocery;
 import edu.ntnu.iir.bidata.services.FridgeService;
 import edu.ntnu.iir.bidata.services.GroceryService;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -145,4 +151,28 @@ public class FridgeServiceTest {
 
     verifyNoMoreInteractions(mockGroceryService);
   }
+  @Test
+  void testGetGroceriesSortedByName() {
+    FridgeService fridgeService = new FridgeService();
+    fridgeService.addGrocery(new Grocery("Banana", 1, "kg", 10, LocalDate.now().plusDays(5)));
+    fridgeService.addGrocery(new Grocery("Apple", 2, "kg", 15, LocalDate.now().plusDays(10)));
+
+    List<Grocery> sortedGroceries = fridgeService.getGroceriesSortedByName();
+
+    Assertions.assertEquals("Apple", sortedGroceries.get(0).getName());
+    Assertions.assertEquals("Banana", sortedGroceries.get(1).getName());
+  }
+
+  @Test
+  void testGetGroceriesSortedByExpiryDate() {
+    FridgeService fridgeService = new FridgeService();
+    fridgeService.addGrocery(new Grocery("Banana", 1, "kg", 10, LocalDate.now().plusDays(5)));
+    fridgeService.addGrocery(new Grocery("Apple", 2, "kg", 15, LocalDate.now().plusDays(10)));
+
+    List<Grocery> sortedGroceries = fridgeService.getGroceriesSortedByExpiryDate();
+
+    Assertions.assertEquals("Banana", sortedGroceries.get(0).getName());
+    Assertions.assertEquals("Apple", sortedGroceries.get(1).getName());
+  }
+
 }

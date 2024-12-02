@@ -4,6 +4,7 @@ import edu.ntnu.iir.bidata.model.Fridge;
 import edu.ntnu.iir.bidata.model.Grocery;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -118,6 +119,28 @@ public class FridgeService {
   }
 
   /**
+   * Retrieves all groceries stored in the storage. Expired groceries are not included.
+   *
+   * @return a list of all non-expired grocery items in the food storage
+   */
+  public static List<Grocery> getGroceriesSortedByName() {
+    return fridge.getGroceriesPerCategory()
+        .values()
+        .stream()
+        .flatMap(Collection::stream)
+        .sorted(Comparator.comparing(Grocery::getName))
+        .toList();
+  }
+  public static List<Grocery> getGroceriesSortedByExpiryDate() {
+    return fridge.getGroceriesPerCategory()
+        .values()
+        .stream()
+        .flatMap(Collection::stream)
+        .sorted(Comparator.comparing(Grocery::getExpiryDate))
+        .toList();
+  }
+
+  /**
    * Retrieves all expired groceries from the food storage.
    *
    * @return a list of expired grocery items
@@ -153,4 +176,15 @@ public class FridgeService {
         .mapToDouble(groceryService::calculateValue)
         .sum();
   }
+
+  public static Grocery findGroceryByName(String name) {
+    return fridge.getGroceriesPerCategory()
+        .values()
+        .stream()
+        .flatMap(Collection::stream)
+        .filter(g -> g.getName().equalsIgnoreCase(name))
+        .findFirst()
+        .orElse(null);
+  }
+
 }

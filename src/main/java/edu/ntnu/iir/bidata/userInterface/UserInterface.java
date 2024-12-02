@@ -8,7 +8,6 @@ import edu.ntnu.iir.bidata.services.GroceryService;
 import edu.ntnu.iir.bidata.services.RecipeService;
 import edu.ntnu.iir.bidata.utils.InputUtils;
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -165,7 +164,7 @@ public class UserInterface {
 
     while (!exit) {
       displayMenu();
-      int choice = InputUtils.readValidatedInt(scanner, "Select an option: ", 1, 12);
+      int choice = InputUtils.readValidatedInt(scanner, "Select an option: ",1, 13);
       try {
         switch (choice) {
           case 1:
@@ -175,33 +174,36 @@ public class UserInterface {
             removeGrocery(scanner);
             break;
           case 3:
-            viewAllGroceries();
+            findGroceryByName(scanner);
             break;
           case 4:
-            viewExpiredGroceries();
+            viewAllGroceries(scanner);
             break;
           case 5:
-            calculateTotalValue();
+            viewExpiredGroceries();
             break;
           case 6:
-            calculateTotalValueOfExpiredItems();
+            calculateTotalValue();
             break;
           case 7:
-            addRecipe(scanner);
+            calculateTotalValueOfExpiredItems();
             break;
           case 8:
-            viewAllRecipes();
+            addRecipe(scanner);
             break;
           case 9:
-            viewPossibleRecipes(scanner);
+            viewAllRecipes();
             break;
           case 10:
-            createSmoothie(scanner);
+            viewPossibleRecipes(scanner);
             break;
           case 11:
-            viewAllSmoothieRecipes();
+            createSmoothie(scanner);
             break;
           case 12:
+            viewAllSmoothieRecipes();
+            break;
+          case 13:
             System.out.println("Exiting application. Goodbye!");
             exit = true;
             break;
@@ -232,17 +234,18 @@ public class UserInterface {
    */
   private static void displayMenu() {
     System.out.println("\n========== In-House Food Waste Management ==========");
-    System.out.println(" 1. Add Grocery           |  7. Add Recipe");
-    System.out.println(" 2. Remove Grocery        |  8. View All Recipes");
-    System.out.println(" 3. View All Groceries    |  9. View Possible Recipes");
-    System.out.println(" 4. Expired Groceries     |     with Current Groceries");
-    System.out.println(" 5. Total Value (All)     |                             ");
-    System.out.println(" 6. Total Value (Expired) | 10. Create Smoothie");
-    System.out.println("                          | 11. View Smoothie Recipes");
-    System.out.println("                          | 12. Exit");
+    System.out.println(" 1. Add Grocery           |  7. Total Value (Expired)");
+    System.out.println(" 2. Remove Grocery        |  8. Add Recipe");
+    System.out.println(" 3. Find Grocery by Name  |  9. View All Recipes");
+    System.out.println(" 4. View All Groceries    | 10. View Possible Recipes");
+    System.out.println(" 5. Expired Groceries     |     with Current Groceries");
+    System.out.println(" 6. Total Value (All)     | 11. Create Smoothie");
+    System.out.println("                          | 12. View Smoothie Recipes");
+    System.out.println("                          | 13. Exit");
     System.out.println("====================================================");
-    System.out.println("Choose between (1-12): ");
+    System.out.println("Choose between (1-13): ");
   }
+
 
 
 
@@ -312,18 +315,42 @@ public class UserInterface {
    * }</pre>
    */
 
-  private static void viewAllGroceries() {
-    System.out.println("\n--- All Groceries ---");
-    FridgeService.getAllGroceries().stream()
-        .sorted(Comparator.comparing(Grocery::getExpiryDate))
-        .forEach(
-            x -> {
-              if (GroceryService.isExpired(x)) {
-                System.out.println(x + " (expired)");
-              } else {
-                System.out.println(x);
-              }
-            });
+
+  private static void findGroceryByName(Scanner scanner) {
+    String name = InputUtils.readNonEmptyString(scanner, "Enter the name of the grocery to find: ");
+    Grocery grocery = FridgeService.findGroceryByName(name);
+
+    if (grocery != null) {
+      System.out.println("\n--- Grocery Found ---");
+      System.out.println(grocery);
+    } else {
+      System.out.println("\nNo grocery found with the name: " + name);
+    }
+  }
+
+  private static void viewAllGroceries(Scanner scanner) {
+    System.out.println("How would you like to view the groceries?");
+    System.out.println("1. Sorted by Name");
+    System.out.println("2. Sorted by Expiry Date");
+    int choice = InputUtils.readValidatedInt(scanner, "Enter choice (1 or 2): ", 1, 2);
+
+    List<Grocery> groceries;
+    if (choice == 1) {
+      groceries = FridgeService.getGroceriesSortedByName();
+    } else {
+      groceries = FridgeService.getGroceriesSortedByExpiryDate();
+    }
+
+    System.out.println("\n--- Groceries ---");
+    groceries.forEach(
+        grocery -> {
+          if (GroceryService.isExpired(grocery)) {
+            System.out.println(grocery + " (expired)");
+          } else {
+            System.out.println(grocery);
+          }
+        }
+    );
   }
 
   /**

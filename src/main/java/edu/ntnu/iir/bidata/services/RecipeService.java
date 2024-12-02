@@ -39,6 +39,7 @@ public class RecipeService {
     cookbookForRecipes.getRecipes().add(recipe);
   }
 
+
   /**
    * Returns the list of all recipes.
    *
@@ -96,6 +97,26 @@ public class RecipeService {
    *
    * @return the list of smoothie recipes
    */
+
+  /**
+   * Removes a recipe by its name from the cookbook.
+   *
+   * @param recipeName the name of the recipe to remove
+   * @return true if the recipe was found and removed, false otherwise
+   */
+  public static boolean removeRecipe(String recipeName) {
+    Optional<Recipe> recipeToRemove = cookbookForRecipes.getRecipes().stream()
+        .filter(recipe -> recipe.getName().equalsIgnoreCase(recipeName))
+        .findFirst();
+
+    if (recipeToRemove.isPresent()) {
+      cookbookForRecipes.getRecipes().remove(recipeToRemove.get());
+      return true; // Successfully removed
+    } else {
+      return false; // Recipe not found
+    }
+  }
+
 
   public static List<Recipe> getSmoothieRecipes() {
     return cookbookForRecipes.getRecipes().stream()

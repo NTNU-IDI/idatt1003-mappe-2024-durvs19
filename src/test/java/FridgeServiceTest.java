@@ -164,6 +164,25 @@ public class FridgeServiceTest {
   }
 
   @Test
+  void testFindGroceryByName_Existing() {
+    FridgeService fridgeService = new FridgeService();
+    fridgeService.addGrocery(new Grocery("Milk", 1, "liters", 20, LocalDate.now().plusDays(5)));
+
+    Grocery found = FridgeService.findGroceryByName("Milk");
+    Assertions.assertNotNull(found);
+    Assertions.assertEquals("Milk", found.getName());
+  }
+
+  @Test
+  void testFindGroceryByName_NonExisting() {
+    FridgeService fridgeService = new FridgeService();
+    fridgeService.addGrocery(new Grocery("Milk", 1, "liters", 20, LocalDate.now().plusDays(5)));
+
+    Grocery found = FridgeService.findGroceryByName("Cheese");
+    Assertions.assertNull(found);
+  }
+
+  @Test
   void testGetGroceriesSortedByExpiryDate() {
     FridgeService fridgeService = new FridgeService();
     fridgeService.addGrocery(new Grocery("Banana", 1, "kg", 10, LocalDate.now().plusDays(5)));
@@ -173,6 +192,18 @@ public class FridgeServiceTest {
 
     Assertions.assertEquals("Banana", sortedGroceries.get(0).getName());
     Assertions.assertEquals("Apple", sortedGroceries.get(1).getName());
+  }
+
+  @Test
+  void testFindGroceryByName_NullInput() {
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> FridgeService.findGroceryByName(null));
+  }
+
+  @Test
+  void testAddGrocery_NegativeQuantity() {
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> new Grocery("Milk", -1, "liters", 20, LocalDate.now().plusDays(5)));
   }
 
 }

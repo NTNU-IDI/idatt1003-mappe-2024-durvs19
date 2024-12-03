@@ -178,10 +178,14 @@ public class FridgeService {
   }
 
   public static List<Grocery> findGroceriesByName(String name) {
+    if (name == null) {
+      throw new IllegalArgumentException("The name parameter cannot be null");
+    }
     return getAllGroceries().stream()
         .filter(grocery -> grocery.getName().equalsIgnoreCase(name))
         .toList();
   }
+
 
 
 }

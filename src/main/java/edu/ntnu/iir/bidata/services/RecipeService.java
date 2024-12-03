@@ -21,7 +21,7 @@ public class RecipeService {
   private static GroceryService groceryService = new GroceryService();
 
   /**
-   * Constructs a new RecipeService with the specified grocery service.
+   * Constructs a new {@code RecipeService} with the specified grocery service.
    *
    * @param mockGroceryService the grocery service to be used
    */
@@ -30,11 +30,15 @@ public class RecipeService {
   }
 
   /**
-   * Adds a new recipe to the list of recipes.
+   * Adds a new recipe to the cookbook.
+   *
+   * <p><strong>Example:</strong></p>
+   * <pre><code>
+   * Recipe newRecipe = new Recipe("Pasta", ingredientsMap);
+   * recipeService.addRecipe(newRecipe);
+   * </code></pre>
    *
    * @param recipe the recipe to be added
-   * @example Recipe newRecipe = new Recipe("Pasta", ingredientsMap);
-   *     recipeService.addRecipe(newRecipe);
    */
   public static void addRecipe(Recipe recipe) {
     cookbookForRecipes.getRecipes().add(recipe);
@@ -42,10 +46,14 @@ public class RecipeService {
 
 
   /**
-   * Returns the list of all recipes.
+   * Retrieves the list of all recipes.
+   *
+   * <p><strong>Example:</strong></p>
+   * <pre><code>
+   * List&lt;Recipe&gt; allRecipes = recipeService.getRecipes();
+   * </code></pre>
    *
    * @return the list of recipes
-   * @example List&lt;Recipe&gt; allRecipes = recipeService.getRecipes();
    */
   public static List<Recipe> getRecipes() {
     return cookbookForRecipes.getRecipes();
@@ -54,11 +62,15 @@ public class RecipeService {
   /**
    * Returns a list of possible recipes that can be made with the given fridge items.
    *
+   * <p>Filters recipes based on the availability of ingredients. If expired groceries are included,
+   * those ingredients are also considered.</p>
+   *
    * @param fridgeItems the list of groceries available in the fridge
    * @param includeExpiredGrocery whether to include expired groceries ("y" for yes, otherwise no)
    * @return the list of possible recipes that can be made
    */
-  public static List<Recipe> getPossibleRecipes(List<Grocery> fridgeItems, String includeExpiredGrocery) {
+  public static List<Recipe> getPossibleRecipes(List<Grocery> fridgeItems,
+      String includeExpiredGrocery) {
     // Normalize fridge item names to lowercase and group them
     Map<String, List<Grocery>> groceriesByName = fridgeItems.stream()
         .filter(grocery -> {
@@ -68,7 +80,8 @@ public class RecipeService {
             return !IngredientChecker.isExpired(grocery); // Exclude expired items
           }
         })
-        .collect(Collectors.groupingBy(grocery -> grocery.getName().toLowerCase())); // Normalize to lowercase
+        .collect(Collectors.groupingBy(grocery -> grocery.getName().toLowerCase()));
+    // Normalize to lowercase
 
     // Filter recipes by checking ingredient availability
     return cookbookForRecipes.getRecipes().stream()
@@ -85,18 +98,13 @@ public class RecipeService {
         .toList();
   }
 
-
-  /**
-   * Returns a list of all smoothie recipes.
-   *
-   * @return the list of smoothie recipes
-   */
-
   /**
    * Removes a recipe by its name from the cookbook.
    *
+   * <p>If a recipe with the specified name exists, it is removed from the cookbook.</p>
+   *
    * @param recipeName the name of the recipe to remove
-   * @return true if the recipe was found and removed, false otherwise
+   * @return {@code true} if the recipe was found and removed, {@code false} otherwise
    */
   public static boolean removeRecipe(String recipeName) {
     Optional<Recipe> recipeToRemove = cookbookForRecipes.getRecipes().stream()
@@ -111,11 +119,18 @@ public class RecipeService {
     }
   }
 
-
+  /**
+   * Retrieves a list of all smoothie recipes.
+   *
+   * <p>Filters recipes that have "smoothie" or "milkshake" in their names.</p>
+   *
+   * @return the list of smoothie recipes
+   */
   public static List<Recipe> getSmoothieRecipes() {
     return cookbookForRecipes.getRecipes().stream()
         .filter(recipe ->
-            recipe.getName().toLowerCase().contains("smoothie") ||
+            recipe.getName().toLowerCase().contains("smoothie")
+                ||
                 recipe.getName().toLowerCase().contains("milkshake")
         )
         .toList();

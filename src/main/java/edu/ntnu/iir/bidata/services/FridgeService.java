@@ -16,7 +16,7 @@ public class FridgeService {
   private static GroceryService groceryService;
 
   /**
-   * Constructs a new FridgeService with the specified fridge and grocery service.
+   * Constructs a new {@code FridgeService} with the specified fridge and grocery service.
    *
    * @param mockFridge the fridge to be used
    * @param mockGroceryService the grocery service to be used
@@ -26,17 +26,20 @@ public class FridgeService {
     this.groceryService = mockGroceryService;
   }
 
-  /** Constructs a new FridgeService with a new fridge and grocery service. */
+  /**
+   * Constructs a new {@code FridgeService} with a new fridge and grocery service.
+   */
   public FridgeService() {
     fridge = new Fridge();
     groceryService = new GroceryService();
   }
 
   /**
-   * Adds a grocery item to the food storage. If the same grocery item added multiple times then
-   * records would clubbed to an existing one based on expiry date, their quantities are combined.
-   * In case where expiry dates are different the groceries even if falls under same category would
-   * be treated differently and hence there quatities won't be clubbed
+   * Adds a grocery item to the food storage.
+   *
+   * <p>If the same grocery item is added multiple times, it is merged with an existing entry
+   * based on the expiry date. Their quantities are combined if the expiry dates match.
+   * Otherwise, they are treated as separate entries.</p>
    *
    * @param grocery the grocery item to be added
    */
@@ -70,7 +73,7 @@ public class FridgeService {
    *
    * @param name the name of the grocery item to be removed
    * @param quantity the quantity to be removed
-   * @return true if the specified quantity was removed successfully, false otherwise
+   * @return {@code true} if the specified quantity was removed successfully,{@code false}otherwise
    */
   public static boolean removeGrocery(String name, double quantity) {
     List<Grocery> groceries = fridge.getGroceriesPerCategory().get(name);
@@ -106,10 +109,12 @@ public class FridgeService {
   }
 
   /**
-   * Retrieves all groceries stored in the storage. Expired groceries also gets retrieved to give an
-   * overview of the storage
+   * Retrieves all groceries stored in the fridge.
    *
-   * @return a list of all grocery items in the food storage
+   * <p>Both expired and non-expired groceries are included to provide
+   * a complete overview of the storage.</p>
+   *
+   * @return a list of all grocery items in the fridge
    */
   public static List<Grocery> getAllGroceries() {
     return new ArrayList<>(
@@ -131,6 +136,12 @@ public class FridgeService {
         .sorted(Comparator.comparing(Grocery::getName))
         .toList();
   }
+
+  /**
+   * Retrieves all groceries sorted by expiry date.
+   *
+   * @return a list of groceries sorted by expiry date
+   */
   public static List<Grocery> getGroceriesSortedByExpiryDate() {
     return fridge.getGroceriesPerCategory()
         .values()
@@ -141,7 +152,7 @@ public class FridgeService {
   }
 
   /**
-   * Retrieves all expired groceries from the food storage.
+   * Retrieves all expired groceries from the fridge.
    *
    * @return a list of expired grocery items
    */
@@ -177,6 +188,13 @@ public class FridgeService {
         .sum();
   }
 
+  /**
+   * Retrieves all groceries with the specified name.
+   *
+   * @param name the name of the grocery items to retrieve
+   * @return a list of grocery items with the specified name
+   * @throws IllegalArgumentException if the {@code name} parameter is null
+   */
   public static List<Grocery> findGroceriesByName(String name) {
     if (name == null) {
       throw new IllegalArgumentException("The name parameter cannot be null");

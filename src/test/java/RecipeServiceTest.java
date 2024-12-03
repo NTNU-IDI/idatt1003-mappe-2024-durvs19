@@ -18,7 +18,6 @@ public class RecipeServiceTest {
   /**
    * Clears all recipes from the RecipeService before each test execution.
    */
-
   @BeforeEach
   public void clearRecipes() {
     RecipeService.getRecipes().clear();
@@ -27,7 +26,6 @@ public class RecipeServiceTest {
   /**
    * Tests that a recipe can be successfully added to the RecipeService.
    */
-
   @Test
   public void testAddRecipe() {
     Recipe recipe = new Recipe(
@@ -48,7 +46,6 @@ public class RecipeServiceTest {
   /**
    * Tests that a recipe can be removed successfully if it exists in the RecipeService.
    */
-
   @Test
   public void testRemoveRecipe_Existing() {
     Recipe recipe = new Recipe(
@@ -79,7 +76,6 @@ public class RecipeServiceTest {
   /**
    * Tests that all recipes can be retrieved from the RecipeService.
    */
-
   @Test
   public void testGetRecipes() {
     Recipe recipe1 = new Recipe(
@@ -108,7 +104,6 @@ public class RecipeServiceTest {
   /**
    * Tests that recipes can be retrieved based on available ingredients in the fridge.
    */
-
   @Test
   public void testGetPossibleRecipes_WithAvailableIngredients() {
     Recipe recipe = new Recipe(
@@ -135,7 +130,6 @@ public class RecipeServiceTest {
   /**
    * Tests that no recipes are returned when the required ingredients are not available in sufficient quantity.
    */
-
   @Test
   public void testGetPossibleRecipes_WithoutAvailableIngredients() {
     Recipe recipe = new Recipe(
@@ -159,7 +153,6 @@ public class RecipeServiceTest {
   /**
    * Tests that recipes can be retrieved when expired ingredients are allowed.
    */
-
   @Test
   public void testGetPossibleRecipes_WithExpiredIngredients() {
     Recipe recipe = new Recipe(

@@ -177,14 +177,11 @@ public class FridgeService {
         .sum();
   }
 
-  public static Grocery findGroceryByName(String name) {
-    return fridge.getGroceriesPerCategory()
-        .values()
-        .stream()
-        .flatMap(Collection::stream)
-        .filter(g -> g.getName().equalsIgnoreCase(name))
-        .findFirst()
-        .orElse(null);
+  public static List<Grocery> findGroceriesByName(String name) {
+    return getAllGroceries().stream()
+        .filter(grocery -> grocery.getName().equalsIgnoreCase(name))
+        .toList();
   }
+
 
 }

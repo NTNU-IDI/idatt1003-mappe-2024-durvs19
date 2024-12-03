@@ -236,16 +236,16 @@ public class UserInterface {
    * }</pre>
    */
   private static void displayMenu() {
-    System.out.println("\n========== In-House Food Waste Management ==========");
-    System.out.println(" 1. Add Grocery           |  8. Add Recipe");
-    System.out.println(" 2. Remove Grocery        |  9. View All Recipes");
-    System.out.println(" 3. Find Grocery by Name  | 10. Remove Recipe");
-    System.out.println(" 4. View All Groceries    | 11. View Possible Recipes");
-    System.out.println(" 5. Expired Groceries     |     with Current Groceries");
-    System.out.println(" 6. Total Value (All)     | 12. Create Smoothie");
-    System.out.println(" 7. Total Value (Expired) | 13. View Smoothie Recipes");
-    System.out.println("                          | 14. Exit");
-    System.out.println("====================================================");
+    System.out.println("\n=================== In-House Food Waste Management ===================");
+    System.out.println(" 1. Add Grocery                             |  8. Add Recipe");
+    System.out.println(" 2. Remove Grocery                          |  9. View All Recipes");
+    System.out.println(" 3. Find Grocery by Name                    | 10. Remove Recipe");
+    System.out.println(" 4. View All Groceries                      | 11. View Possible Recipes");
+    System.out.println(" 5. Expired Groceries                       |     with Current Groceries");
+    System.out.println(" 6. Total Value/Price (All Groceries)       | 12. Create Smoothie");
+    System.out.println(" 7. Total Value/Price (Expired Groceries)   | 13. View Smoothie Recipes");
+    System.out.println("                                            | 14. Exit");
+    System.out.println("=================================================================");
     System.out.println("Choose between (1-14): ");
   }
 
@@ -321,16 +321,18 @@ public class UserInterface {
 
 
   private static void findGroceryByName(Scanner scanner) {
-    String name = InputUtils.readNonEmptyString(scanner, "Enter the name of the grocery to find: ");
-    Grocery grocery = FridgeService.findGroceryByName(name);
+    String name = InputUtils.readNonEmptyString(scanner, "Enter the name of the "
+        + "grocery to find: ");
+    List<Grocery> matchingGroceries = FridgeService.findGroceriesByName(name);
 
-    if (grocery != null) {
+    if (!matchingGroceries.isEmpty()) {
       System.out.println("\n--- Grocery Found ---");
-      System.out.println(grocery);
+      matchingGroceries.forEach(System.out::println);
     } else {
       System.out.println("\nNo grocery found with the name: " + name);
     }
   }
+
 
   private static void viewAllGroceries(Scanner scanner) {
     System.out.println("How would you like to view the groceries?");

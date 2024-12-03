@@ -15,7 +15,7 @@ public class Smoothie {
   /** Name of the smoothie. */
   private final String name;
   /** Description of the smoothie. */
-  private String description;
+  private final String description;
   /** Expiry date of the smoothie. */
   private final LocalDate expiryDate;
   /** List of grocery ingredients used in the smoothie. */

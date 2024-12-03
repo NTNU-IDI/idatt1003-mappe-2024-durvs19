@@ -1,11 +1,13 @@
-[//]: # (TODO: Fill inn your name and student ID)
+[//]: # 
 
 STUDENT NAME = Durva Parmar
 STUDENT ID = 10015
 
 ## Project description
 
-P
+This project, In-House Food Waste Management, is a console-based program for tracking and managing shopping, recipes, and food waste. 
+The software allows users to add groceries, track their expiration dates, calculate the total value of their purchases, and find recipes based on available ingredients.
+The purpose is to reduce food waste by assisting customers in making better use of their supplies.
 
 [//]: # (TODO: Write a short description of your project/product here.)
 

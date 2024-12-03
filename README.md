@@ -17,7 +17,7 @@ The purpose is to reduce food waste by assisting customers in making better use 
 
 ## Link to repository
 
-[//]: # (TODO: Include a link to your GitHub repository here.)
+[//]: # https://github.com/NTNU-IDI/idatt1003-mappe-2024-durvs19
 
 ## How to run the project
 

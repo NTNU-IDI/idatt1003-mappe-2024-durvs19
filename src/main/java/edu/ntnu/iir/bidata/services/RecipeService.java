@@ -3,6 +3,7 @@ package edu.ntnu.iir.bidata.services;
 import edu.ntnu.iir.bidata.model.Cookbook;
 import edu.ntnu.iir.bidata.model.Grocery;
 import edu.ntnu.iir.bidata.model.Recipe;
+import edu.ntnu.iir.bidata.utils.IngredientChecker;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -51,46 +52,39 @@ public class RecipeService {
   }
 
   /**
-   * Returns a list of possible recipes that can be made with the given fridge items. This method
-   * filters the recipes based on whether expired groceries should be included.
+   * Returns a list of possible recipes that can be made with the given fridge items.
    *
    * @param fridgeItems the list of groceries available in the fridge
    * @param includeExpiredGrocery whether to include expired groceries ("y" for yes, otherwise no)
    * @return the list of possible recipes that can be made
-   * @example List&lt;Grocery&gt; fridgeItems = Arrays.asList(new Grocery("Tomato", 2, false));
-   *@example List&lt;Recipe&gt; possibleRecipes = recipeService.getPossibleRecipes(fridgeItems,"n");
    */
-  public static List<Recipe> getPossibleRecipes(List<Grocery> fridgeItems,
-      String includeExpiredGrocery) {
+  public static List<Recipe> getPossibleRecipes(List<Grocery> fridgeItems, String includeExpiredGrocery) {
+    // Normalize fridge item names to lowercase and group them
+    Map<String, List<Grocery>> groceriesByName = fridgeItems.stream()
+        .filter(grocery -> {
+          if (includeExpiredGrocery.equalsIgnoreCase("y")) {
+            return true; // Include all items
+          } else {
+            return !IngredientChecker.isExpired(grocery); // Exclude expired items
+          }
+        })
+        .collect(Collectors.groupingBy(grocery -> grocery.getName().toLowerCase())); // Normalize to lowercase
 
-    Map<String, List<Grocery>> expiredItemsIncludedBasedOnFlag =
-        fridgeItems.stream()
-            .filter(
-                grocery -> {
-                  if (includeExpiredGrocery.equalsIgnoreCase("y")) {
-                    return true;
-                  } else {
-                    return !GroceryService.isExpired(grocery);
-                  }
-                })
-            .collect(Collectors.groupingBy(Grocery::getName));
-
+    // Filter recipes by checking ingredient availability
     return cookbookForRecipes.getRecipes().stream()
-        .filter(
-            recipe ->
-                recipe.getIngredients().entrySet().stream()
-                    .allMatch(
-                        entry -> {
-                          List<Grocery> grocery =
-                              expiredItemsIncludedBasedOnFlag.get(entry.getKey());
-                          double availableQuantity =
-                              Optional.ofNullable(grocery).orElse(new ArrayList<>()).stream()
-                                  .mapToDouble(Grocery::getQuantity)
-                                  .sum();
-                          return grocery != null && availableQuantity >= entry.getValue();
-                        }))
+        .filter(recipe -> recipe.getIngredients().entrySet().stream()
+            .allMatch(entry -> {
+              List<Grocery> availableGroceries = groceriesByName.get(entry.getKey().toLowerCase());
+              double totalAvailableQuantity = Optional.ofNullable(availableGroceries)
+                  .orElse(new ArrayList<>())
+                  .stream()
+                  .mapToDouble(Grocery::getQuantity)
+                  .sum();
+              return totalAvailableQuantity >= entry.getValue();
+            }))
         .toList();
   }
+
 
   /**
    * Returns a list of all smoothie recipes.

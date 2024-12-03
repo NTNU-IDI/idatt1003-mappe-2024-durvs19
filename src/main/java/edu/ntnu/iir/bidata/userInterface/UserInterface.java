@@ -66,7 +66,7 @@ public class UserInterface {
         22, LocalDate.now().plusDays(10)));
     FridgeService.addGrocery(new Grocery("Avocado", 4, "pieces",
         9, LocalDate.now().plusDays(12)));
-    FridgeService.addGrocery(new Grocery("Lemon Juice", 0.5, "tablespoons",
+    FridgeService.addGrocery(new Grocery("lemon Juice", 0.5, "tablespoons",
         4, LocalDate.now().plusMonths(6)));
     FridgeService.addGrocery(new Grocery("Mango", 4, "pieces",
         10, LocalDate.now().plusDays(7)));
@@ -267,7 +267,7 @@ public class UserInterface {
    */
 
   private static void addGrocery(Scanner scanner) {
-    String name = InputUtils.readNonEmptyString(scanner, "Enter grocery name: ");
+    String name = InputUtils.readNonEmptyString(scanner, "Enter grocery name: ").toLowerCase();
     double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity: ",
         0.0, Double.MAX_VALUE);
     String unit = InputUtils.readNonEmptyString(scanner, "Enter unit (e.g., liters,"
@@ -428,7 +428,7 @@ public class UserInterface {
    */
 
   private static void addRecipe(Scanner scanner) {
-    String name = InputUtils.readNonEmptyString(scanner, "Enter recipe name: ");
+    String name = InputUtils.readNonEmptyString(scanner, "Enter recipe name: ").toLowerCase();
     String description = InputUtils.readNonEmptyString(scanner, "Enter recipe description:"
         + " ");
     String procedure = InputUtils.readNonEmptyString(scanner, "Enter procedure: ");
@@ -496,8 +496,16 @@ public class UserInterface {
    */
 
   private static void viewPossibleRecipes(Scanner scanner) {
-    System.out.print("Do you want to see possible recipes including expired groceries? (y/n): ");
-    String includeExpiredGrocery = scanner.nextLine();
+    String includeExpiredGrocery;
+    while (true) {
+      includeExpiredGrocery = InputUtils.readNonEmptyString(scanner,
+          "Do you want to see possible recipes including expired groceries? "
+              + "(y/n): ").toLowerCase();
+      if (includeExpiredGrocery.equals("y") || includeExpiredGrocery.equals("n")) {
+        break;
+      }
+      System.out.println("Invalid input. Please enter 'y' or 'n'.");
+    }
 
     System.out.println("\n--- Possible Recipes with Current Groceries ---");
     List<Recipe> possibleRecipes =

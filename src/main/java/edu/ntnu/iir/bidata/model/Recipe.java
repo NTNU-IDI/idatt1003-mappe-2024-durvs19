@@ -21,7 +21,12 @@ public class Recipe {
   /** Detailed procedure to prepare the recipe. */
   private String procedure;
 
-  /** Ingredients required for the recipe. Maps ingredient name to the required quantity. */
+  /**
+   * The ingredients required for the recipe.
+   *
+   * <p>Maps ingredient names to their required quantities.</p>
+   * Example: {@code {"Flour": 500.0, "Sugar": 200.0}}
+   */
   private Map<String, Double> ingredients; // Ingredient name -> Required quantity
 
   /** The number of people the recipe serves. */

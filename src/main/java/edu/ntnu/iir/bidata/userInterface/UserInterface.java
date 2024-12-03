@@ -14,21 +14,19 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Represents the user interface for the application. This class provides methods to initialize
- * resources and start the application.
+ * Represents the user interface for the application.
+ *
+ * <p>This class provides methods to initialize resources,interact with the user via a console menu,
+ * and perform various application operations like adding groceries, managing recipes,
+ * and creating smoothies.</p>
  */
 public class UserInterface {
 
   /**
-   * Initialize the application with sample groceries and recipes.
+   * Initializes the application with sample groceries and recipes.
    *
-   * <p>This method adds sample grocery items to the fridge and sample recipes to the recipe book.
-   *
-   * <p>Example usage:
-   *
-   * <pre>{@code
-   * FoodWasteApp.init();
-   * }</pre>
+   * <p>This method populates the fridge with sample grocery items and adds
+   * sample recipes to the recipe book.</p>
    */
   public static void init() {
     // Add some sample groceries to the fridge
@@ -67,7 +65,7 @@ public class UserInterface {
     FridgeService.addGrocery(new Grocery("Avocado", 4, "pieces",
         9, LocalDate.now().plusDays(12)));
     FridgeService.addGrocery(new Grocery("lemon Juice", 0.5, "tablespoons",
-        4, LocalDate.now().plusMonths(6)));
+        4, LocalDate.now().plusMonths(3)));
     FridgeService.addGrocery(new Grocery("Mango", 4, "pieces",
         10, LocalDate.now().plusDays(7)));
 
@@ -148,15 +146,9 @@ public class UserInterface {
 
 
   /**
-   * Start the console menu for user interaction.
+   * Starts the console menu for user interaction.
    *
-   * <p>This method displays the main menu and processes user inputs to perform various actions.
-   *
-   * <p>Example usage:
-   *
-   * <pre>{@code
-   * FoodWasteApp.start();
-   * }</pre>
+   * <p>This method displays the main menu and processes user inputs to perform various actions.</p>
    */
   public static void start() {
     Scanner scanner = new Scanner(System.in);
@@ -164,7 +156,8 @@ public class UserInterface {
 
     while (!exit) {
       displayMenu();
-      int choice = InputUtils.readValidatedInt(scanner, "Select an option: ",1, 14);
+      int choice = InputUtils.readValidatedInt(scanner, "Select an option: ",
+          1, 14);
       try {
         switch (choice) {
           case 1:
@@ -223,17 +216,8 @@ public class UserInterface {
     scanner.close();
   }
 
-
   /**
-   * Display the main menu options to the user.
-   *
-   * <p>This method prints the available actions the user can select from the console menu.
-   *
-   * <p>Example usage:
-   *
-   * <pre>{@code
-   * FoodWasteApp.displayMenu();
-   * }</pre>
+   * Displays the main menu options to the user.
    */
   private static void displayMenu() {
     System.out.println("\n=================== In-House Food Waste Management ===================");
@@ -250,22 +234,14 @@ public class UserInterface {
   }
 
 
-
-
-
   /**
    * Add a new grocery item to the fridge.
    *
    * <p>This method prompts the user to enter details for a new grocery item and adds it to the
    * fridge.
    *
-   * @param scanner Scanner object for user input
-   *                <pre>{@code
-   *                Scanner scanner = new Scanner(System.in);
-   *                FoodWasteApp.addGrocery(scanner);
-   *                }</pre>
+   * @param scanner the {@code Scanner} object for reading user input
    */
-
   private static void addGrocery(Scanner scanner) {
     String name = InputUtils.readNonEmptyString(scanner, "Enter grocery name: ").toLowerCase();
     double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity: ",
@@ -287,13 +263,8 @@ public class UserInterface {
    * from
    * the fridge.
    *
-   * @param scanner Scanner object for user input
-   *                <pre>{@code
-   *                Scanner scanner = new Scanner(System.in);
-   *                FoodWasteApp.removeGrocery(scanner);
-   *                }</pre>
+   * @param scanner the {@code Scanner} object for reading user input
    */
-
   private static void removeGrocery(Scanner scanner) {
     String name = InputUtils.readNonEmptyString(scanner, "Enter grocery name to remove: ");
     double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity to remove: ",
@@ -312,14 +283,8 @@ public class UserInterface {
    *
    * <p>This method displays all groceries sorted by expiry date, indicating if any are expired.
    *
-   * <p>Example usage:
-   *
-   * <pre>{@code
-   * FoodWasteApp.viewAllGroceries();
-   * }</pre>
+   * @param scanner the {@code Scanner} object for reading user input
    */
-
-
   private static void findGroceryByName(Scanner scanner) {
     String name = InputUtils.readNonEmptyString(scanner, "Enter the name of the "
         + "grocery to find: ");
@@ -333,7 +298,11 @@ public class UserInterface {
     }
   }
 
-
+  /**
+   * Views all groceries, either sorted by name or by expiry date.
+   *
+   * @param scanner the {@code Scanner} object for reading user input
+   */
   private static void viewAllGroceries(Scanner scanner) {
     System.out.println("How would you like to view the groceries?");
     System.out.println("1. Sorted by Name");
@@ -364,13 +333,11 @@ public class UserInterface {
    *
    * <p>This method displays only the groceries that have passed their expiry date.
    *
-   * <p>Example usage:
-   *
+   * <p><strong>Example usage:</strong></p>
    * <pre>{@code
-   * FoodWasteApp.viewExpiredGroceries();
+   * UserInterface.viewExpiredGroceries();
    * }</pre>
    */
-
   private static void viewExpiredGroceries() {
     System.out.println("\n--- Expired Groceries ---");
     List<Grocery> expiredGroceries = FridgeService.getExpiredGroceries();
@@ -386,49 +353,38 @@ public class UserInterface {
    *
    * <p>This method computes and prints the total value of the groceries currently in the fridge.
    *
-   * <p>Example usage:
-   *
+   * <p><strong>Example usage:</strong></p>
    * <pre>{@code
-   * FoodWasteApp.calculateTotalValue();
+   * UserInterface.calculateTotalValue();
    * }</pre>
    */
-
   private static void calculateTotalValue() {
     double totalValue = FridgeService.calculateTotalValue();
     System.out.printf("Total value of groceries: NOK %.2f%n", totalValue);
   }
 
   /**
-   * Calculate the total value of all expired groceries in the fridge.
+   * Calculates and displays the total value of all expired groceries in the fridge.
    *
-   * <p>method computes and prints the total value of the expired groceries currently in the
-   * fridge.
+   * <p>This method is useful for evaluating waste or loss due to expired groceries.</p>
    *
-   * <p>Example usage:
-   *
+   * <p><strong>Example usage:</strong></p>
    * <pre>{@code
-   * FoodWasteApp.calculateTotalValueOfExpiredItems();
+   * UserInterface.calculateTotalValueOfExpiredItems();
    * }</pre>
    */
-
   private static void calculateTotalValueOfExpiredItems() {
     double totalValue = FridgeService.calculateTotalValueOfExpiredGroceries();
     System.out.printf("Total value of expired groceries: NOK %.2f%n", totalValue);
   }
 
   /**
-   * Add a new recipe to the recipe book.
+   * Prompts the user to add a new recipe to the recipe book.
    *
-   * <p>This method prompts the user to enter details for a new recipe and adds it to the recipe
-   * book.
+   * <p>Users can specify recipe details, including ingredients and quantities.</p>
    *
-   * @param scanner Scanner object for user input
-   *                <pre>{@code
-   *                Scanner scanner = new Scanner(System.in);
-   *                FoodWasteApp.addRecipe(scanner);
-   *                }</pre>
+   * @param scanner the {@code Scanner} object for reading user input
    */
-
   private static void addRecipe(Scanner scanner) {
     String name = InputUtils.readNonEmptyString(scanner, "Enter recipe name: ").toLowerCase();
     String description = InputUtils.readNonEmptyString(scanner, "Enter recipe description:"
@@ -456,19 +412,13 @@ public class UserInterface {
   }
 
   /**
-   * View all recipes in the recipe book.
+   * Removes a recipe by name from the recipe book.
    *
-   * <p>This method displays all recipes stored in the recipe book.
-   *
-   * <p>Example usage:
-   *
-   * <pre>{@code
-   * FoodWasteApp.viewAllRecipes();
-   * }</pre>
+   * @param scanner the {@code Scanner} object for reading user input
    */
-
   private static void removeRecipe(Scanner scanner) {
-    String recipeName = InputUtils.readNonEmptyString(scanner, "Enter the name of the recipe to remove: ");
+    String recipeName = InputUtils.readNonEmptyString(scanner, "Enter the name "
+        + "of the recipe to remove: ");
     boolean success = RecipeService.removeRecipe(recipeName);
 
     if (success) {
@@ -478,25 +428,23 @@ public class UserInterface {
     }
   }
 
-
+  /**
+   * View all recipes in the recipe book.
+   *
+   * <p>This method displays all recipes stored in the recipe book.
+   */
   private static void viewAllRecipes() {
     System.out.println("\n--- All Recipes ---");
     RecipeService.getRecipes().forEach(System.out::println);
   }
 
   /**
-   * View all possible recipes that can be made with current groceries.
+   * Displays all recipes that can be made with the current groceries in the fridge.
    *
-   * <p>This method prompts the user to indicate whether to include expired groceries and displays
-   * recipes that can be made with the groceries available in the fridge.
+   * <p>Users can choose whether to include expired groceries in the calculation.</p>
    *
-   * @param scanner Scanner object for user input
-   *                <pre>{@code
-   *                Scanner scanner = new Scanner(System.in);
-   *                FoodWasteApp.viewPossibleRecipes(scanner);
-   *                }</pre>
+   * @param scanner the {@code Scanner} object for reading user input
    */
-
   private static void viewPossibleRecipes(Scanner scanner) {
     String includeExpiredGrocery;
     while (true) {
@@ -518,17 +466,15 @@ public class UserInterface {
       possibleRecipes.forEach(System.out::println);
     }
   }
-  /**
-   * Creates a smoothie by prompting the user for its name, description, and ingredients.
-   *
-   * <p>This method interacts with the user via the provided {@code Scanner} to input smoothie
-   * details. It checks for ingredient availability in the fridge, allows adding placeholder
-   * ingredients if they are not found, updates the fridge inventory by removing used quantities,
-   * creates a {@code Smoothie} object, and adds the smoothie as a recipe.
-   *
-   * @param scanner the {@code Scanner} object used to read user input from the console
-   */
 
+  /**
+   * Prompts the user to create a new smoothie recipe.
+   *
+   * <p>This method allows users to specify ingredients, check availability,
+   * and update the fridge inventory.</p>
+   *
+   * @param scanner the {@code Scanner} object for reading user input
+   */
   private static void createSmoothie(Scanner scanner) {
     try {
       String smoothieName = InputUtils.readNonEmptyString(scanner, "Enter smoothie name: ");
@@ -607,15 +553,7 @@ public class UserInterface {
   }
 
   /**
-   * View all smoothie recipes in the recipe book.
-   *
-   * <p>This method displays all smoothie recipes stored in the recipe book.
-   *
-   * <p>Example usage:
-   *
-   * <pre>{@code
-   * FoodWasteApp.viewAllSmoothieRecipes();
-   * }</pre>
+   * Displays all smoothie recipes in the recipe book.
    */
   private static void viewAllSmoothieRecipes() {
     System.out.println("\n--- All Smoothie Recipes ---");

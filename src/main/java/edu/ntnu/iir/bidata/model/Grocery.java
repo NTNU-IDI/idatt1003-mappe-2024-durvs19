@@ -3,30 +3,38 @@ package edu.ntnu.iir.bidata.model;
 import java.time.LocalDate;
 import lombok.Getter;
 
-/** Represents a grocery item in the inventory. */
+/**
+ * Represents a grocery item in the inventory, including its name, quantity, unit of measurement,
+ * price per unit, and expiry date.
+ */
 @Getter
 public class Grocery {
   /** Name of the grocery item. */
-  private String name;
+  private final String name;
   /** Quantity of the grocery item (e.g., in liters or kilograms). */
   private double quantity;
   /** Unit of measurement for the quantity (e.g., "liters", "kg", "pieces"). */
-  private String unit;
+  private final String unit;
   /** Price per unit of the grocery item (in NOK). */
-  private double pricePerUnit;
+  private final double pricePerUnit;
   /** Expiry date of the grocery item. */
-  private LocalDate expiryDate; // so its easier to calculate price of different quantities
+  private final LocalDate expiryDate; // so its easier to calculate price of different quantities
 
   // creating a constructor for this
 
   /**
-   * Constructs a new Grocery item.
+   * Constructs a new {@code Grocery} item.
    *
    * @param name the name of the grocery item
    * @param quantity the quantity of the grocery item
    * @param unit the unit of measurement for the quantity
    * @param pricePerUnit the price per unit of the grocery item
    * @param expiryDate the expiry date of the grocery item
+   * @throws IllegalArgumentException if {@code name} is null or empty, {@code quantity}
+   *                                  is negative,
+   *                                  {@code unit} is null or empty, {@code pricePerUnit}
+   *                                  is negative,
+   *                                  or {@code expiryDate} is null
    */
   public Grocery(String name, double quantity, String unit,
       double pricePerUnit, LocalDate expiryDate) {
@@ -53,10 +61,13 @@ public class Grocery {
   }
 
   /**
-   * Sets the quantity of the grocery item (if f.ex you added 2 eggs separately it updates to 2).
+   * Updates the quantity of the grocery item.
    *
-   * @param quantity the quantity to set
-   * @throws IllegalArgumentException if the quantity is negative
+   * <p>For example, if additional units are added separately, this method updates
+   * the total quantity.</p>
+   *
+   * @param quantity the new quantity to set
+   * @throws IllegalArgumentException if {@code quantity} is negative
    */
   public void setQuantity(double quantity) {
     if (quantity < 0) {
@@ -68,7 +79,8 @@ public class Grocery {
   /**
    * Returns a string representation of the grocery item.
    *
-   * @return a string representation of the grocery item
+   * @return a formatted string containing the grocery's name, quantity, unit, price per unit,
+   *         and expiry date
    */
   @Override
   public String toString() {

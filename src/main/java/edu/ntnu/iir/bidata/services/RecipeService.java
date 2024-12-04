@@ -3,11 +3,15 @@ package edu.ntnu.iir.bidata.services;
 import edu.ntnu.iir.bidata.model.Cookbook;
 import edu.ntnu.iir.bidata.model.Grocery;
 import edu.ntnu.iir.bidata.model.Recipe;
+import edu.ntnu.iir.bidata.model.Smoothie;
 import edu.ntnu.iir.bidata.utils.IngredientChecker;
+import edu.ntnu.iir.bidata.utils.InputUtils;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
 
@@ -118,6 +122,74 @@ public class RecipeService {
       return false; // Recipe not found
     }
   }
+
+  public static void createSmoothie(Scanner scanner) {
+    String smoothieName = InputUtils.readNonEmptyString(scanner, "Enter smoothie name: ");
+    if (!smoothieName.toLowerCase().contains("smoothie")) {
+      smoothieName += " Smoothie";
+    }
+
+    String smoothieDescription = InputUtils.readNonEmptyString(scanner, "Enter smoothie description: ");
+    Smoothie smoothie = new Smoothie(smoothieName, smoothieDescription, LocalDate.now().plusWeeks(2));
+
+    while (true) {
+      String ingredientName = InputUtils.readNonEmptyString(scanner, "Enter ingredient name (or type 'done' to finish): ");
+      if (ingredientName.equalsIgnoreCase("done")) {
+        break;
+      }
+
+      Grocery matchingGrocery = FridgeService.getAllGroceries().stream()
+          .filter(g -> g.getName().equalsIgnoreCase(ingredientName))
+          .findFirst()
+          .orElse(null);
+
+      if (matchingGrocery == null) {
+        System.out.println("Grocery not found. Adding a placeholder ingredient.");
+        double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity to use: ", 0.0, Double.MAX_VALUE);
+
+        // Select predefined unit
+        String unit = InputUtils.selectUnit(scanner);
+
+        double pricePerUnit = InputUtils.readValidatedDouble(scanner, "Enter price per unit (in NOK): ", 0.0, Double.MAX_VALUE);
+        LocalDate expiryDate = LocalDate.now().plusMonths(1);
+
+        Grocery placeholder = new Grocery(ingredientName, quantity, unit, pricePerUnit, expiryDate);
+        smoothie.addIngredient(placeholder);
+        FridgeService.addGrocery(placeholder);
+
+        System.out.println("Placeholder ingredient added.");
+        continue;
+      }
+
+      double maxQuantity = matchingGrocery.getQuantity();
+      double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity to use: ", 0.0, maxQuantity);
+      if (quantity > maxQuantity) {
+        System.out.println("Not enough quantity available. Skipping this ingredient.");
+        continue;
+      }
+
+      Grocery ingredientToAdd = new Grocery(
+          matchingGrocery.getName(),
+          quantity,
+          matchingGrocery.getUnit(),
+          matchingGrocery.getPricePerUnit(),
+          matchingGrocery.getExpiryDate()
+      );
+      smoothie.addIngredient(ingredientToAdd);
+      FridgeService.removeGrocery(matchingGrocery.getName(), quantity);
+    }
+
+    addRecipe(new Recipe(
+        smoothieName,
+        smoothieDescription,
+        "Blend all ingredients.",
+        smoothie.getIngredientsMap(),
+        1
+    ));
+
+    System.out.println("Smoothie created successfully:\n" + smoothie);
+  }
+
 
   /**
    * Retrieves a list of all smoothie recipes.

@@ -148,17 +148,28 @@ public class InputUtils {
   }
 
   public static void displayGroceries(List<Grocery> groceries) {
-    System.out.println("\n--- Groceries ---");
-    groceries.forEach(
-        grocery -> {
-          if (GroceryService.isExpired(grocery)) {
-            System.out.println(grocery + " (expired)");
-          } else {
-            System.out.println(grocery);
-          }
-        }
-    );
+    if (groceries.isEmpty()) {
+      System.out.println("No groceries available.");
+      return;
+    }
+
+    // Print table headers
+    System.out.println("\n+--------------------------------------------------------------------------+");
+    System.out.printf("| %-20s | %-10s | %-15s | %-15s | %-10s |\n",
+        "Name", "Quantity", "Price per Unit (NOK)", "Expiry Date", "Status");
+    System.out.println("+--------------------------------------------------------------------------+");
+
+    // Print each grocery item
+    for (Grocery grocery : groceries) {
+      String status = GroceryService.isExpired(grocery) ? "Expired" : "Fresh";
+      System.out.printf("| %-20s | %-10.2f | %-15.2f | %-15s | %-10s |\n",
+          grocery.getName(), grocery.getQuantity(),
+          grocery.getPricePerUnit(), grocery.getExpiryDate(), status);
+    }
+
+    System.out.println("+--------------------------------------------------------------------------+");
   }
+
 
 
 }

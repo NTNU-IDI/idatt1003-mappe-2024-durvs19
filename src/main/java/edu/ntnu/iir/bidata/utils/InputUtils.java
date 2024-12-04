@@ -1,7 +1,10 @@
 package edu.ntnu.iir.bidata.utils;
 
+import edu.ntnu.iir.bidata.model.Grocery;
+import edu.ntnu.iir.bidata.services.GroceryService;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -124,6 +127,38 @@ public class InputUtils {
     }
   }
 
+  // Predefined list of units
+  private static final List<String> UNITS = List.of("kg", "liters", "pieces", "cups", "tablespoons");
+
+  /**
+  /**
+   * Displays available units and allows the user to select one.
+   *
+   * @param scanner the {@code Scanner} object for reading user input
+   * @return the selected unit
+   */
+  public static String selectUnit(Scanner scanner) {
+    System.out.println("\nAvailable units:");
+    for (int i = 0; i < UNITS.size(); i++) {
+      System.out.printf("%d. %s%n", i + 1, UNITS.get(i));
+    }
+
+    int choice = readValidatedInt(scanner, "Choose a unit (1-" + UNITS.size() + "): ", 1, UNITS.size());
+    return UNITS.get(choice - 1);
+  }
+
+  public static void displayGroceries(List<Grocery> groceries) {
+    System.out.println("\n--- Groceries ---");
+    groceries.forEach(
+        grocery -> {
+          if (GroceryService.isExpired(grocery)) {
+            System.out.println(grocery + " (expired)");
+          } else {
+            System.out.println(grocery);
+          }
+        }
+    );
+  }
 
 
 }

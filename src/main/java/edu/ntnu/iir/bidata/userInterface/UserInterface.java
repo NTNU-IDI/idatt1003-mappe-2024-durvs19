@@ -1,10 +1,10 @@
 package edu.ntnu.iir.bidata.userInterface;
 
+import static edu.ntnu.iir.bidata.services.RecipeService.createSmoothie;
+
 import edu.ntnu.iir.bidata.model.Grocery;
 import edu.ntnu.iir.bidata.model.Recipe;
-import edu.ntnu.iir.bidata.model.Smoothie;
 import edu.ntnu.iir.bidata.services.FridgeService;
-import edu.ntnu.iir.bidata.services.GroceryService;
 import edu.ntnu.iir.bidata.services.RecipeService;
 import edu.ntnu.iir.bidata.utils.InputUtils;
 import java.time.LocalDate;
@@ -21,8 +21,21 @@ import java.util.Scanner;
  * and creating smoothies.</p>
  */
 public class UserInterface {
+  private static final int EXIT = 0;
+  private static final int ADD_GROCERY = 1;
+  private static final int REMOVE_GROCERY = 2;
+  private static final int FIND_GROCERY_BY_NAME = 3;
+  private static final int VIEW_ALL_GROCERIES = 4;
+  private static final int VIEW_EXPIRED_GROCERIES = 5;
+  private static final int CALCULATE_TOTAL_VALUE = 6;
+  private static final int CALCULATE_TOTAL_VALUE_OF_EXPIRED_ITEMS = 7;
+  private static final int ADD_RECIPE = 8;
+  private static final int VIEW_ALL_RECIPES = 9;
+  private static final int REMOVE_RECIPE = 10;
+  private static final int VIEW_POSSIBLE_RECIPES = 11;
 
   /**
+   *
    * Initializes the application with sample groceries and recipes.
    *
    * <p>This method populates the fridge with sample grocery items and adds
@@ -157,55 +170,25 @@ public class UserInterface {
     while (!exit) {
       displayMenu();
       int choice = InputUtils.readValidatedInt(scanner, "Select an option: ",
-          1, 14);
+          0, 11);
       try {
         switch (choice) {
-          case 1:
-            addGrocery(scanner);
-            break;
-          case 2:
-            removeGrocery(scanner);
-            break;
-          case 3:
-            findGroceryByName(scanner);
-            break;
-          case 4:
-            viewAllGroceries(scanner);
-            break;
-          case 5:
-            viewExpiredGroceries();
-            break;
-          case 6:
-            calculateTotalValue();
-            break;
-          case 7:
-            calculateTotalValueOfExpiredItems();
-            break;
-          case 8:
-            addRecipe(scanner);
-            break;
-          case 9:
-            viewAllRecipes();
-            break;
-          case 10:
-            removeRecipe(scanner);
-            break;
-          case 11:
-            viewPossibleRecipes(scanner);
-            break;
-          case 12:
-            createSmoothie(scanner);
-            break;
-          case 13:
-            viewAllSmoothieRecipes();
-            break;
-          case 14:
+          case ADD_GROCERY -> addGrocery(scanner);
+          case REMOVE_GROCERY -> removeGrocery(scanner);
+          case FIND_GROCERY_BY_NAME -> findGroceryByName(scanner);
+          case VIEW_ALL_GROCERIES -> viewAllGroceries(scanner);
+          case VIEW_EXPIRED_GROCERIES -> viewExpiredGroceries();
+          case CALCULATE_TOTAL_VALUE -> calculateTotalValue();
+          case CALCULATE_TOTAL_VALUE_OF_EXPIRED_ITEMS -> calculateTotalValueOfExpiredItems();
+          case ADD_RECIPE -> addRecipe(scanner);
+          case VIEW_ALL_RECIPES -> viewAllRecipes(scanner);
+          case REMOVE_RECIPE -> removeRecipe(scanner);
+          case VIEW_POSSIBLE_RECIPES -> viewPossibleRecipes(scanner);
+          case EXIT -> {
             System.out.println("Exiting application. Goodbye!");
             exit = true;
-            break;
-          default:
-            System.out.println("Invalid choice. Please try again.");
-            break;
+          }
+          default -> System.out.println("Invalid choice. Please try again.");
         }
       } catch (Exception e) {
         System.out.println("An error occurred. Please try again.");
@@ -221,16 +204,15 @@ public class UserInterface {
    */
   private static void displayMenu() {
     System.out.println("\n=================== In-House Food Waste Management ===================");
-    System.out.println(" 1. Add Grocery                             |  8. Add Recipe");
-    System.out.println(" 2. Remove Grocery                          |  9. View All Recipes");
-    System.out.println(" 3. Find Grocery by Name                    | 10. Remove Recipe");
-    System.out.println(" 4. View All Groceries                      | 11. View Possible Recipes");
-    System.out.println(" 5. Expired Groceries                       |     with Current Groceries");
-    System.out.println(" 6. Total Value/Price (All Groceries)       | 12. Create Smoothie");
-    System.out.println(" 7. Total Value/Price (Expired Groceries)   | 13. View Smoothie Recipes");
-    System.out.println("                                            | 14. Exit");
+    System.out.println(" 0. Exit");
+    System.out.println(" 1. Add Grocery                      | 7. Total Value (Expired Groceries) ");
+    System.out.println(" 2. Remove Grocery                   | 8. Add Recipe ");
+    System.out.println(" 3. Find Grocery by Name             | 9. View All Recipes");
+    System.out.println(" 4. View All Groceries               | 10. Remove Recipe");
+    System.out.println(" 5. Expired Groceries                | 11. View Possible Recipes");
+    System.out.println(" 6. Total Value (All Groceries)      |     with Current Groceries");
     System.out.println("=================================================================");
-    System.out.println("Choose between (1-14): ");
+    System.out.println("Choose between (0-11): ");
   }
 
 
@@ -243,18 +225,22 @@ public class UserInterface {
    * @param scanner the {@code Scanner} object for reading user input
    */
   private static void addGrocery(Scanner scanner) {
-    String name = InputUtils.readNonEmptyString(scanner, "Enter grocery name: ").toLowerCase();
-    double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity: ",
-        0.0, Double.MAX_VALUE);
-    String unit = InputUtils.readNonEmptyString(scanner, "Enter unit (e.g., liters,"
-        + " kg, pieces): ");
-    double pricePerUnit = InputUtils.readValidatedDouble(scanner, "Enter price per"
-        + " unit (in NOK): ", 0.0, Double.MAX_VALUE);
+    String name = InputUtils.readNonEmptyString(scanner, "Enter grocery name: ")
+        .toLowerCase();
+    double quantity = InputUtils.readValidatedDouble(scanner, "Enter amount"
+        + " (must be non-negative): ", 0.0, 100);
+
+    // Select predefined unit
+    String unit = InputUtils.selectUnit(scanner);
+
+    double pricePerUnit = InputUtils.readValidatedDouble(scanner, "Enter price per unit "
+        + "(in NOK, must be non-negative): ", 0.0, 1000);
     LocalDate expiryDate = InputUtils.readDate(scanner, "Enter expiry date (YYYY-MM-DD): ");
 
     FridgeService.addGrocery(new Grocery(name, quantity, unit, pricePerUnit, expiryDate));
     System.out.println("Grocery added successfully.");
   }
+
 
   /**
    * Remove a specified quantity of a grocery item from the fridge.
@@ -266,9 +252,21 @@ public class UserInterface {
    * @param scanner the {@code Scanner} object for reading user input
    */
   private static void removeGrocery(Scanner scanner) {
+
+    List<Grocery> groceries = FridgeService.getAllGroceries();
+
+    // Check if the list is empty
+    if (groceries.isEmpty()) {
+      System.out.println("No groceries available to remove.");
+      return;
+    }
+
+    System.out.println("\n--- Available Groceries ---");
+    InputUtils.displayGroceries(groceries);
+
     String name = InputUtils.readNonEmptyString(scanner, "Enter grocery name to remove: ");
     double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity to remove: ",
-        0.0, Double.MAX_VALUE);
+        0.0, 50);
 
     boolean success = FridgeService.removeGrocery(name, quantity);
     if (success) {
@@ -316,16 +314,7 @@ public class UserInterface {
       groceries = FridgeService.getGroceriesSortedByExpiryDate();
     }
 
-    System.out.println("\n--- Groceries ---");
-    groceries.forEach(
-        grocery -> {
-          if (GroceryService.isExpired(grocery)) {
-            System.out.println(grocery + " (expired)");
-          } else {
-            System.out.println(grocery);
-          }
-        }
-    );
+    InputUtils.displayGroceries(groceries);
   }
 
   /**
@@ -386,30 +375,40 @@ public class UserInterface {
    * @param scanner the {@code Scanner} object for reading user input
    */
   private static void addRecipe(Scanner scanner) {
-    String name = InputUtils.readNonEmptyString(scanner, "Enter recipe name: ").toLowerCase();
-    String description = InputUtils.readNonEmptyString(scanner, "Enter recipe description:"
-        + " ");
-    String procedure = InputUtils.readNonEmptyString(scanner, "Enter procedure: ");
+    System.out.println("Would you like to add:");
+    System.out.println("1. Food Recipe");
+    System.out.println("2. Smoothie Recipe");
 
-    Map<String, Double> ingredients = new HashMap<>();
-    System.out.println("Enter ingredients (type 'done' to finish):");
-    while (true) {
-      String ingredientName = InputUtils.readNonEmptyString(scanner, "Ingredient name: ");
-      if (ingredientName.equalsIgnoreCase("done")) {
-        break;
+    int choice = InputUtils.readValidatedInt(scanner, "Enter your choice (1 or 2): ", 1, 2);
+
+    if (choice == 1) {
+      // Add a food recipe
+      String name = InputUtils.readNonEmptyString(scanner, "Enter recipe name: ").toLowerCase();
+      String description = InputUtils.readNonEmptyString(scanner, "Enter recipe description: ");
+      String procedure = InputUtils.readNonEmptyString(scanner, "Enter procedure: ");
+
+      Map<String, Double> ingredients = new HashMap<>();
+      System.out.println("Enter ingredients (type 'done' to finish):");
+      while (true) {
+        String ingredientName = InputUtils.readNonEmptyString(scanner, "Ingredient name: ");
+        if (ingredientName.equalsIgnoreCase("done")) {
+          break;
+        }
+
+        double quantity = InputUtils.readValidatedDouble(scanner, "Quantity: ", 0.0, 20);
+        ingredients.put(ingredientName, quantity);
       }
 
-      double quantity = InputUtils.readValidatedDouble(scanner, "Quantity: ", 0.0,
-          Double.MAX_VALUE);
-      ingredients.put(ingredientName, quantity);
+      int serves = InputUtils.readValidatedInt(scanner, "Serves (number of people): ", 1, 15);
+
+      RecipeService.addRecipe(new Recipe(name, description, procedure, ingredients, serves));
+      System.out.println("Food recipe added successfully.");
+    } else {
+      // Add a smoothie recipe
+      createSmoothie(scanner);
     }
-
-    int serves = InputUtils.readValidatedInt(scanner, "Serves (number of people): ", 1,
-        Integer.MAX_VALUE);
-
-    RecipeService.addRecipe(new Recipe(name, description, procedure, ingredients, serves));
-    System.out.println("Recipe added successfully.");
   }
+
 
   /**
    * Removes a recipe by name from the recipe book.
@@ -433,10 +432,31 @@ public class UserInterface {
    *
    * <p>This method displays all recipes stored in the recipe book.
    */
-  private static void viewAllRecipes() {
-    System.out.println("\n--- All Recipes ---");
-    RecipeService.getRecipes().forEach(System.out::println);
+  private static void viewAllRecipes(Scanner scanner) {
+    System.out.println("\nWould you like to view:");
+    System.out.println("1. Food Recipes");
+    System.out.println("2. Smoothie Recipes");
+    System.out.println("3. All Recipes");
+
+    int choice = InputUtils.readValidatedInt(scanner, "Enter your choice (1-3): ", 1, 3);
+
+    List<Recipe> recipesToDisplay;
+    switch (choice) {
+      case 1 -> recipesToDisplay = RecipeService.getRecipes().stream()
+          .filter(recipe -> !recipe.getName().toLowerCase().contains("smoothie"))
+          .toList();
+      case 2 -> recipesToDisplay = RecipeService.getSmoothieRecipes();
+      default -> recipesToDisplay = RecipeService.getRecipes();
+    }
+
+    if (recipesToDisplay.isEmpty()) {
+      System.out.println("No recipes found.");
+    } else {
+      System.out.println("\n--- Recipes ---");
+      recipesToDisplay.forEach(System.out::println);
+    }
   }
+
 
   /**
    * Displays all recipes that can be made with the current groceries in the fridge.
@@ -464,125 +484,6 @@ public class UserInterface {
       System.out.println("No recipes can be made with the current groceries.");
     } else {
       possibleRecipes.forEach(System.out::println);
-    }
-  }
-
-  /**
-   * Prompts the user to create a new smoothie recipe.
-   *
-   * <p>This method allows users to specify ingredients, check availability,
-   * and update the fridge inventory.</p>
-   *
-   * @param scanner the {@code Scanner} object for reading user input
-   */
-  private static void createSmoothie(Scanner scanner) {
-    try {
-      String smoothieName = InputUtils.readNonEmptyString(scanner, "Enter smoothie name: ");
-      if (!smoothieName.toLowerCase().contains("smoothie")) {
-        smoothieName += " Smoothie";
-      }
-
-      String smoothieDescription = InputUtils.readNonEmptyString(scanner, "Enter smoothie"
-          + " description: ");
-
-      Smoothie smoothie = new Smoothie(smoothieName, smoothieDescription,
-          LocalDate.now().plusWeeks(2));
-
-      while (true) {
-        String ingredientName = InputUtils.readNonEmptyString(scanner, "Enter ingredient"
-            + " name (or type 'done' to finish): ");
-        if (ingredientName.equalsIgnoreCase("done")) {
-          break;
-        }
-
-        Grocery matchingGrocery = FridgeService.getAllGroceries().stream()
-            .filter(g -> g.getName().equalsIgnoreCase(ingredientName))
-            .findFirst()
-            .orElse(null);
-
-        if (matchingGrocery == null) {
-          System.out.println("Grocery not found. Adding a placeholder ingredient.");
-          double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity to use:"
-              + " ", 0.0, Double.MAX_VALUE);
-          double pricePerUnit = InputUtils.readValidatedDouble(scanner, "Enter price "
-              + "per unit (in NOK): ", 0.0, Double.MAX_VALUE);
-          LocalDate expiryDate = LocalDate.now().plusMonths(1);
-
-          String defaultUnit = "units";
-          Grocery placeholder = new Grocery(ingredientName, quantity, defaultUnit,
-              pricePerUnit, expiryDate);
-          smoothie.addIngredient(placeholder);
-          FridgeService.addGrocery(placeholder);
-
-          System.out.println("Placeholder ingredient added.");
-          continue;
-        }
-
-        double maxQuantity = matchingGrocery.getQuantity();
-        double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity to use: ",
-            0.0, maxQuantity);
-        if (quantity > maxQuantity) {
-          System.out.println("Not enough quantity available. Skipping this ingredient.");
-          continue;
-        }
-
-        Grocery ingredientToAdd = new Grocery(
-            matchingGrocery.getName(),
-            quantity,
-            matchingGrocery.getUnit(),
-            matchingGrocery.getPricePerUnit(),
-            matchingGrocery.getExpiryDate()
-        );
-        smoothie.addIngredient(ingredientToAdd);
-        FridgeService.removeGrocery(matchingGrocery.getName(), quantity);
-      }
-
-      RecipeService.addRecipe(new Recipe(
-          smoothieName,
-          smoothieDescription,
-          "Blend all ingredients.",
-          smoothie.getIngredientsMap(),
-          1
-      ));
-
-      System.out.println("Smoothie created successfully:\n" + smoothie);
-    } catch (Exception e) {
-      System.out.println("Error creating smoothie: " + e.getMessage());
-      e.printStackTrace(); // for debugging
-    }
-  }
-
-  /**
-   * Displays all smoothie recipes in the recipe book.
-   */
-  private static void viewAllSmoothieRecipes() {
-    System.out.println("\n--- All Smoothie Recipes ---");
-    List<Recipe> smoothieRecipes = RecipeService.getSmoothieRecipes();
-    if (smoothieRecipes.isEmpty()) {
-      System.out.println("No smoothie recipes found.");
-      return;
-    }
-
-    for (int i = 0; i < smoothieRecipes.size(); i++) {
-      Recipe recipe = smoothieRecipes.get(i);
-      System.out.printf("%d. %s: %s%n", i + 1, recipe.getName(), recipe.getDescription());
-    }
-
-    Scanner scanner = new Scanner(System.in);
-    while (true) {
-      int selection = InputUtils.readValidatedInt(scanner,
-          "\nEnter the number of the smoothie to view details (or type '0' to"
-              + " return to the main menu): ",
-          0, smoothieRecipes.size());
-
-      if (selection == 0) {
-        // Return to main menu
-        break;
-      }
-
-      Recipe selectedRecipe = smoothieRecipes.get(selection - 1);
-      System.out.println("\n--- Smoothie Details ---");
-      System.out.println(selectedRecipe.toString());
     }
   }
 }

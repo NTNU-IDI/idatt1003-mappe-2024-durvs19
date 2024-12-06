@@ -368,11 +368,13 @@ public class UserInterface {
   }
 
   /**
-   * Prompts the user to add a new recipe to the recipe book.
+   * Adds a new recipe to the recipe book.
    *
-   * <p>Users can specify recipe details, including ingredients and quantities.</p>
+   * <p>This method allows the user to choose between adding a food recipe or a smoothie recipe.
+   * Depending on the user's choice, the method collects the necessary details for the selected
+   * recipe type and adds it to the recipe service.</p>
    *
-   * @param scanner the {@code Scanner} object for reading user input
+   * @param scanner the {@code Scanner} object used to read user input
    */
   private static void addRecipe(Scanner scanner) {
     System.out.println("Would you like to add:");
@@ -428,9 +430,13 @@ public class UserInterface {
   }
 
   /**
-   * View all recipes in the recipe book.
+   * Displays all recipes in the recipe book based on the user's preference.
    *
-   * <p>This method displays all recipes stored in the recipe book.
+   * <p>This method allows the user to filter recipes by type:
+   * food recipes, smoothie recipes, or all recipes. The selected
+   * recipes are then displayed in a readable format.</p>
+   *
+   * @param scanner the {@code Scanner} object used to read user input
    */
   private static void viewAllRecipes(Scanner scanner) {
     System.out.println("\nWould you like to view:");

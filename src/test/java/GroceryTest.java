@@ -19,8 +19,12 @@ class GroceryTest {
    */
   @Test
   void testConstructorValidInputs() {
+    //arrange
     Grocery grocery = new Grocery("Milk", 2.0, "liters", 15.0, LocalDate.of(2023, 12, 31));
-   //replaced assertEquals with Assertions.assertEquals bcs of junit5
+    //act
+    // no explicit act step because constructor does the work
+
+    //assert
     Assertions.assertEquals("Milk", grocery.getName());
     Assertions.assertEquals(2.0, grocery.getQuantity());
     Assertions.assertEquals("liters", grocery.getUnit());

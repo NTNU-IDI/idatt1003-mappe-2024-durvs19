@@ -80,7 +80,7 @@ Open the project in an IDE like IntelliJ IDEA or Eclipse.
 Build the project using Maven (mvn clean install).
 Navigate to the main class FoodWasteApp located in the src/main/java/edu/ntnu/iir/bidata directory.
 Run the main method of the FoodWasteApp class to start the program.
-------------------------------------------------------------------------------------------------------------
+
 (make sure the dependencies are installed or work as they should: lombok dependency, junit dependency, mockito dependency) 
 all of them are added as dependencies in the pom.xml file.
 

@@ -144,8 +144,8 @@ public class SmoothieTest {
                 Smoothie: Green Energy
                 Expiry date: 2024-12-31
                 Ingredients:
-                Spinach: 0.20 kg, NOK 12.00/unit, Expiry: 2024-12-20
-                Avocado: 0.30 kg, NOK 25.00/unit, Expiry: 2024-12-20
+                spinach: 0.20 kg, NOK 12.00/unit, Expiry: 2024-12-20
+                avocado: 0.30 kg, NOK 25.00/unit, Expiry: 2024-12-20
                 Total Price: NOK 9.90
                 """;
 
@@ -159,18 +159,18 @@ public class SmoothieTest {
    */
   @Test
   void testGetIngredientsMap() {
-    Smoothie smoothie = new Smoothie("Fruity", "A fruity blend", LocalDate.of(2024, 12, 31));
-    Grocery grocery1 = new Grocery("Banana", 1.0, "kg", 10.0, LocalDate.of(2024, 12, 20));
-    Grocery grocery2 = new Grocery("Banana", 0.5, "kg", 10.0, LocalDate.of(2024, 12, 20));
-    Grocery grocery3 = new Grocery("Mango", 1.0, "kg", 20.0, LocalDate.of(2024, 12, 20));
+    Smoothie smoothie = new Smoothie("fruity", "A fruity blend", LocalDate.of(2024, 12, 31));
+    Grocery grocery1 = new Grocery("banana", 1.0, "kg", 10.0, LocalDate.of(2024, 12, 20));
+    Grocery grocery2 = new Grocery("banana", 0.5, "kg", 10.0, LocalDate.of(2024, 12, 20));
+    Grocery grocery3 = new Grocery("mango", 1.0, "kg", 20.0, LocalDate.of(2024, 12, 20));
 
     smoothie.addIngredient(grocery1);
     smoothie.addIngredient(grocery2);
     smoothie.addIngredient(grocery3);
 
     Map<String, Double> ingredientsMap = smoothie.getIngredientsMap();
-    Assertions.assertEquals(1.5, ingredientsMap.get("Banana"), 0.0001, "Banana quantity should be aggregated correctly.");
-    Assertions.assertEquals(1.0, ingredientsMap.get("Mango"), 0.0001, "Mango quantity should be correctly represented.");
+    Assertions.assertEquals(1.5, ingredientsMap.get("banana"), 0.0001, "Banana quantity should be aggregated correctly.");
+    Assertions.assertEquals(1.0, ingredientsMap.get("mango"), 0.0001, "Mango quantity should be correctly represented.");
     Assertions.assertEquals(2, ingredientsMap.size(), "Ingredients map should contain exactly two entries.");
   }
 }

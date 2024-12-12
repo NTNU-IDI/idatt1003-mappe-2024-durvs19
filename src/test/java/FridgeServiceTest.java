@@ -34,12 +34,12 @@ public class FridgeServiceTest {
   @Test
   public void testAddGrocery_NewGrocery() {
     FridgeService fridgeService = new FridgeService();
-    Grocery grocery = new Grocery("Apple", 5, "kg", 2.0, LocalDate.now().plusDays(10));
+    Grocery grocery = new Grocery("apple", 5, "kg", 2.0, LocalDate.now().plusDays(10));
     fridgeService.addGrocery(grocery);
 
     List<Grocery> groceries = fridgeService.getAllGroceries();
     Assertions.assertEquals(1, groceries.size());
-    Assertions.assertEquals("Apple", groceries.get(0).getName());
+    Assertions.assertEquals("apple", groceries.get(0).getName().toLowerCase());
     Assertions.assertEquals(5, groceries.get(0).getQuantity());
   }
 
@@ -50,14 +50,14 @@ public class FridgeServiceTest {
   @Test
   public void testAddGrocery_ExistingGrocery() {
     FridgeService fridgeService = new FridgeService();
-    Grocery grocery1 = new Grocery("Apple", 5, "kg", 2.0, LocalDate.now().plusDays(10));
-    Grocery grocery2 = new Grocery("Apple", 3, "kg", 2.0, LocalDate.now().plusDays(10));
+    Grocery grocery1 = new Grocery("apple", 5, "kg", 2.0, LocalDate.now().plusDays(10));
+    Grocery grocery2 = new Grocery("apple", 3, "kg", 2.0, LocalDate.now().plusDays(10));
     fridgeService.addGrocery(grocery1);
     fridgeService.addGrocery(grocery2);
 
     List<Grocery> groceries = fridgeService.getAllGroceries();
     Assertions.assertEquals(1, groceries.size());
-    Assertions.assertEquals("Apple", groceries.get(0).getName());
+    Assertions.assertEquals("apple", groceries.get(0).getName().toLowerCase());
     Assertions.assertEquals(8, groceries.get(0).getQuantity());
   }
 
@@ -68,8 +68,8 @@ public class FridgeServiceTest {
   @Test
   public void testAddGrocery_DifferentExpiryDate() {
     FridgeService fridgeService = new FridgeService();
-    Grocery grocery1 = new Grocery("Apple", 5, "kg", 2.0, LocalDate.now().plusDays(10));
-    Grocery grocery2 = new Grocery("Apple", 3, "kg", 2.0, LocalDate.now().plusDays(5));
+    Grocery grocery1 = new Grocery("apple", 5, "kg", 2.0, LocalDate.now().plusDays(10));
+    Grocery grocery2 = new Grocery("apple", 3, "kg", 2.0, LocalDate.now().plusDays(5));
     fridgeService.addGrocery(grocery1);
     fridgeService.addGrocery(grocery2);
 
@@ -87,7 +87,7 @@ public class FridgeServiceTest {
     GroceryService mockGroceryService = mock(GroceryService.class);
     FridgeService fridgeService = new FridgeService(mockFridge, mockGroceryService);
 
-    Grocery grocery = new Grocery("Banana", 10, "kg", 1.5, LocalDate.now().plusDays(7));
+    Grocery grocery = new Grocery("banana", 10, "kg", 1.5, LocalDate.now().plusDays(7));
     when(mockGroceryService.areGroceriesClubbable(any(Grocery.class), eq(grocery)))
         .thenReturn(true);
 
@@ -103,15 +103,15 @@ public class FridgeServiceTest {
   @Test
   public void testRemoveGrocery_ExistingGroceryWithSufficientQuantity() {
     FridgeService fridgeService = new FridgeService();
-    Grocery grocery = new Grocery("Apple", 5, "kg", 2.0, LocalDate.now().plusDays(10));
+    Grocery grocery = new Grocery("apple", 5, "kg", 2.0, LocalDate.now().plusDays(10));
     fridgeService.addGrocery(grocery);
 
-    boolean result = fridgeService.removeGrocery("Apple", 3);
+    boolean result = fridgeService.removeGrocery("apple", 3);
     List<Grocery> groceries = fridgeService.getAllGroceries();
 
     assertTrue(result);
     Assertions.assertEquals(1, groceries.size());
-    Assertions.assertEquals("Apple", groceries.get(0).getName());
+    Assertions.assertEquals("apple", groceries.get(0).getName());
     Assertions.assertEquals(2, groceries.get(0).getQuantity());
   }
 
@@ -122,15 +122,15 @@ public class FridgeServiceTest {
   @Test
   public void testRemoveGrocery_ExistingGroceryWithInsufficientQuantity() {
     FridgeService fridgeService = new FridgeService();
-    Grocery grocery = new Grocery("Apple", 3, "kg", 2.0, LocalDate.now().plusDays(10));
+    Grocery grocery = new Grocery("apple", 3, "kg", 2.0, LocalDate.now().plusDays(10));
     fridgeService.addGrocery(grocery);
 
-    boolean result = fridgeService.removeGrocery("Apple", 5);
+    boolean result = fridgeService.removeGrocery("apple", 5);
     List<Grocery> groceries = fridgeService.getAllGroceries();
 
     assertFalse(result);
     Assertions.assertEquals(1, groceries.size());
-    Assertions.assertEquals("Apple", groceries.get(0).getName());
+    Assertions.assertEquals("apple", groceries.get(0).getName());
     Assertions.assertEquals(3, groceries.get(0).getQuantity());
   }
 
@@ -142,7 +142,7 @@ public class FridgeServiceTest {
   public void testRemoveGrocery_NonExistingGrocery() {
     FridgeService fridgeService = new FridgeService();
 
-    boolean result = fridgeService.removeGrocery("Banana", 5);
+    boolean result = fridgeService.removeGrocery("banana", 5);
 
     assertFalse(result);
   }
@@ -154,10 +154,10 @@ public class FridgeServiceTest {
   @Test
   public void testRemoveGrocery_RemovingAllQuantity() {
     FridgeService fridgeService = new FridgeService();
-    Grocery grocery = new Grocery("Apple", 5, "kg", 2.0, LocalDate.now().plusDays(10));
+    Grocery grocery = new Grocery("apple", 5, "kg", 2.0, LocalDate.now().plusDays(10));
     fridgeService.addGrocery(grocery);
 
-    boolean result = fridgeService.removeGrocery("Apple", 5);
+    boolean result = fridgeService.removeGrocery("apple", 5);
     List<Grocery> groceries = fridgeService.getAllGroceries();
 
     assertTrue(result);
@@ -174,13 +174,13 @@ public class FridgeServiceTest {
     GroceryService mockGroceryService = mock(GroceryService.class);
     FridgeService fridgeService = new FridgeService(mockFridge, mockGroceryService);
 
-    Grocery grocery = new Grocery("Banana", 10, "kg", 1.5, LocalDate.now().plusDays(7));
+    Grocery grocery = new Grocery("banana", 10, "kg", 1.5, LocalDate.now().plusDays(7));
     when(mockFridge.getGroceriesPerCategory())
         .thenReturn(
             new HashMap<>() {
               {
                 put(
-                    "Banana",
+                    "banana",
                     new ArrayList<>() {
                       {
                         add(grocery);
@@ -189,7 +189,7 @@ public class FridgeServiceTest {
               }
             });
 
-    fridgeService.removeGrocery("Banana", 5);
+    fridgeService.removeGrocery("banana", 5);
     verifyNoMoreInteractions(mockGroceryService);
   }
 
@@ -200,13 +200,13 @@ public class FridgeServiceTest {
   @Test
   void testGetGroceriesSortedByName() {
     FridgeService fridgeService = new FridgeService();
-    fridgeService.addGrocery(new Grocery("Banana", 1, "kg", 10, LocalDate.now().plusDays(5)));
-    fridgeService.addGrocery(new Grocery("Apple", 2, "kg", 15, LocalDate.now().plusDays(10)));
+    fridgeService.addGrocery(new Grocery("banana", 1, "kg", 10, LocalDate.now().plusDays(5)));
+    fridgeService.addGrocery(new Grocery("apple", 2, "kg", 15, LocalDate.now().plusDays(10)));
 
     List<Grocery> sortedGroceries = fridgeService.getGroceriesSortedByName();
 
-    Assertions.assertEquals("Apple", sortedGroceries.get(0).getName());
-    Assertions.assertEquals("Banana", sortedGroceries.get(1).getName());
+    Assertions.assertEquals("apple", sortedGroceries.get(0).getName());
+    Assertions.assertEquals("banana", sortedGroceries.get(1).getName());
   }
 
   /**
@@ -216,12 +216,12 @@ public class FridgeServiceTest {
   @Test
   void testFindGroceryByName_Existing() {
     FridgeService fridgeService = new FridgeService();
-    fridgeService.addGrocery(new Grocery("Milk", 1, "liters", 20, LocalDate.now().plusDays(5)));
+    fridgeService.addGrocery(new Grocery("milk", 1, "liters", 20, LocalDate.now().plusDays(5)));
 
-    List<Grocery> foundGroceries = FridgeService.findGroceriesByName("Milk");
+    List<Grocery> foundGroceries = FridgeService.findGroceriesByName(("milk").toLowerCase());
     Assertions.assertNotNull(foundGroceries);
     Assertions.assertEquals(1, foundGroceries.size()); // Ensure only one grocery is found
-    Assertions.assertEquals("Milk", foundGroceries.get(0).getName()); // Verify the name
+    Assertions.assertEquals("milk", foundGroceries.get(0).getName().toLowerCase()); // Verify the name
   }
 
   /**
@@ -231,9 +231,9 @@ public class FridgeServiceTest {
   @Test
   void testFindGroceryByName_NonExisting() {
     FridgeService fridgeService = new FridgeService();
-    fridgeService.addGrocery(new Grocery("Milk", 1, "liters", 20, LocalDate.now().plusDays(5)));
+    fridgeService.addGrocery(new Grocery("milk", 1, "liters", 20, LocalDate.now().plusDays(5)));
 
-    List<Grocery> foundGroceries = FridgeService.findGroceriesByName("Cheese");
+    List<Grocery> foundGroceries = FridgeService.findGroceriesByName("cheese");
     Assertions.assertTrue(foundGroceries.isEmpty()); // Ensure the list is empty
   }
 
@@ -244,13 +244,13 @@ public class FridgeServiceTest {
   @Test
   void testGetGroceriesSortedByExpiryDate() {
     FridgeService fridgeService = new FridgeService();
-    fridgeService.addGrocery(new Grocery("Banana", 1, "kg", 10, LocalDate.now().plusDays(5)));
-    fridgeService.addGrocery(new Grocery("Apple", 2, "kg", 15, LocalDate.now().plusDays(10)));
+    fridgeService.addGrocery(new Grocery("banana", 1, "kg", 10, LocalDate.now().plusDays(5)));
+    fridgeService.addGrocery(new Grocery("apple", 2, "kg", 15, LocalDate.now().plusDays(10)));
 
     List<Grocery> sortedGroceries = fridgeService.getGroceriesSortedByExpiryDate();
 
-    Assertions.assertEquals("Banana", sortedGroceries.get(0).getName());
-    Assertions.assertEquals("Apple", sortedGroceries.get(1).getName());
+    Assertions.assertEquals("banana", sortedGroceries.get(0).getName());
+    Assertions.assertEquals("apple", sortedGroceries.get(1).getName());
   }
 
   /**
@@ -270,7 +270,7 @@ public class FridgeServiceTest {
   @Test
   void testAddGrocery_NegativeQuantity() {
     Assertions.assertThrows(IllegalArgumentException.class,
-        () -> new Grocery("Milk", -1, "liters", 20, LocalDate.now().plusDays(5)));
+        () -> new Grocery("milk", -1, "liters", 20, LocalDate.now().plusDays(5)));
   }
 
 

@@ -20,12 +20,12 @@ class GroceryTest {
   @Test
   void testConstructorValidInputs() {
     //arrange
-    Grocery grocery = new Grocery("Milk", 2.0, "liters", 15.0, LocalDate.of(2023, 12, 31));
+    Grocery grocery = new Grocery("milk", 2.0, "liters", 15.0, LocalDate.of(2023, 12, 31));
     //act
     // no explicit act step because constructor does the work
 
     //assert
-    Assertions.assertEquals("Milk", grocery.getName());
+    Assertions.assertEquals("milk", grocery.getName());
     Assertions.assertEquals(2.0, grocery.getQuantity());
     Assertions.assertEquals("liters", grocery.getUnit());
     Assertions.assertEquals(15.0, grocery.getPricePerUnit());
@@ -90,8 +90,8 @@ class GroceryTest {
    */
   @Test
   void testToString() {
-    Grocery grocery = new Grocery("Milk", 2.0, "liters", 15.0, LocalDate.of(2023, 12, 31));
-    String expected = "Milk: 2.00 liters, NOK 15.00/unit, Expiry: 2023-12-31";
+    Grocery grocery = new Grocery("milk", 2.0, "liters", 15.0, LocalDate.of(2023, 12, 31));
+    String expected = "milk: 2.00 liters, NOK 15.00/unit, Expiry: 2023-12-31";
     assertEquals(expected, grocery.toString());
   }
 }

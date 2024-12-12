@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45cc7c67-1e15-4acf-a1bb-af055cfafa84" name="Changes" comment="finish" />
+    <list default="true" id="45cc7c67-1e15-4acf-a1bb-af055cfafa84" name="Changes" comment="finish">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/FridgeServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/FridgeServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GroceryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GroceryTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,42 +48,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.FoodWasteApp.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FridgeServiceTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FridgeServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FridgeServiceTest.testFindGroceryByName_NullInput.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FridgeServiceTest.testRemoveGrocery_ExistingGroceryWithSufficientQuantity.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.GroceryServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GroceryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GroceryTest.testConstructorValidInputs.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GroceryTest.testSetQuantityValid.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RecipeServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RecipeServiceTest.testAddRecipe.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.RecipeServiceTest.testGetPossibleRecipes_IncludeExpiredGrocery_WithExpiredItems.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SmoothieTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SmoothieTest.testToString.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.java in Foodwaste1.executor&quot;: &quot;Coverage&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;TestNG.&lt;default&gt;.executor&quot;: &quot;Coverage&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main2&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;/Users/durva/Documents/Foodwaste1/src/main/java/edu/ntnu/iir/bidata&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.FoodWasteApp.executor": "Run",
+    "JUnit.FridgeServiceTest (1).executor": "Run",
+    "JUnit.FridgeServiceTest.executor": "Run",
+    "JUnit.FridgeServiceTest.testFindGroceryByName_NullInput.executor": "Run",
+    "JUnit.FridgeServiceTest.testRemoveGrocery_ExistingGroceryWithSufficientQuantity.executor": "Debug",
+    "JUnit.GroceryServiceTest.executor": "Run",
+    "JUnit.GroceryTest.executor": "Run",
+    "JUnit.GroceryTest.testConstructorValidInputs.executor": "Debug",
+    "JUnit.GroceryTest.testSetQuantityValid.executor": "Run",
+    "JUnit.RecipeServiceTest.executor": "Run",
+    "JUnit.RecipeServiceTest.testAddRecipe.executor": "Debug",
+    "JUnit.RecipeServiceTest.testGetPossibleRecipes_IncludeExpiredGrocery_WithExpiredItems.executor": "Run",
+    "JUnit.SmoothieTest.executor": "Run",
+    "JUnit.SmoothieTest.testToString.executor": "Debug",
+    "JUnit.java in Foodwaste1.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "TestNG.<default>.executor": "Coverage",
+    "git-widget-placeholder": "main2",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "/Users/durva/Documents/Foodwaste1/src/main/java/edu/ntnu/iir/bidata",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.FoodWasteApp">
+}]]></component>
+  <component name="RunManager" selected="JUnit.java in Foodwaste1">
     <configuration name="FoodWasteApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.ntnu.iir.bidata.FoodWasteApp" />
       <module name="Foodwaste1" />
@@ -142,8 +146,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FoodWasteApp" />
         <item itemvalue="JUnit.java in Foodwaste1" />
+        <item itemvalue="Application.FoodWasteApp" />
         <item itemvalue="JUnit.RecipeServiceTest" />
         <item itemvalue="JUnit.FridgeServiceTest" />
         <item itemvalue="JUnit.SmoothieTest" />
@@ -174,39 +178,7 @@
       <workItem from="1732793671188" duration="137113000" />
       <workItem from="1733492652675" duration="46000" />
       <workItem from="1733571490019" duration="4021000" />
-      <workItem from="1733860971469" duration="24300000" />
-    </task>
-    <task id="LOCAL-00016" summary="changed to static">
-      <option name="closed" value="true" />
-      <created>1732883838988</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1732883838988</updated>
-    </task>
-    <task id="LOCAL-00017" summary="implemented try - catch to add recipe so code wont break with invalid input">
-      <option name="closed" value="true" />
-      <created>1732884535252</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1732884535252</updated>
-    </task>
-    <task id="LOCAL-00018" summary="added try catch to display menu so that any non integer input wont break the code / program">
-      <option name="closed" value="true" />
-      <created>1732886457964</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1732886457964</updated>
-    </task>
-    <task id="LOCAL-00019" summary="twist: user can add a smoothie (created smoothie class)">
-      <option name="closed" value="true" />
-      <created>1732934174429</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1732934174429</updated>
+      <workItem from="1733860971469" duration="25246000" />
     </task>
     <task id="LOCAL-00020" summary="implemented create smoothie method in userinterface">
       <option name="closed" value="true" />
@@ -568,7 +540,39 @@
       <option name="project" value="LOCAL" />
       <updated>1734006250542</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="finish">
+      <option name="closed" value="true" />
+      <created>1734006433436</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1734006433436</updated>
+    </task>
+    <task id="LOCAL-00066" summary="finish">
+      <option name="closed" value="true" />
+      <created>1734006453331</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1734006453331</updated>
+    </task>
+    <task id="LOCAL-00067" summary="finish">
+      <option name="closed" value="true" />
+      <created>1734006557469</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1734006557469</updated>
+    </task>
+    <task id="LOCAL-00068" summary="finish">
+      <option name="closed" value="true" />
+      <created>1734006574026</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1734006574026</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -624,7 +628,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Foodwaste1$java_in_Foodwaste1.ic" NAME="java in Foodwaste1 Coverage Results" MODIFIED="1733240570223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Foodwaste1$java_in_Foodwaste1.ic" NAME="java in Foodwaste1 Coverage Results" MODIFIED="1734006620654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/Foodwaste1$_default_.ic" NAME="&lt;default&gt; Coverage Results" MODIFIED="1732994811152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

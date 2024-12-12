@@ -80,7 +80,9 @@ Open the project in an IDE like IntelliJ IDEA or Eclipse.
 Build the project using Maven (mvn clean install).
 Navigate to the main class FoodWasteApp located in the src/main/java/edu/ntnu/iir/bidata directory.
 Run the main method of the FoodWasteApp class to start the program.
-(make sure the dependencies are installed or work as they should: lombok dependency, junit dependency, mockito dependency)
+------------------------------------------------------------------------------------------------------------
+(make sure the dependencies are installed or work as they should: lombok dependency, junit dependency, mockito dependency) 
+all of them are added as dependencies in the pom.xml file.
 
 The program starts with a console-based menu system. Users can select options to:
 Add groceries to the fridge.
@@ -94,6 +96,7 @@ The output is displayed in a user-friendly tabular format in the console.
 Ensure JUnit 5 is included in the Maven dependencies (already configured in the pom.xml).
 Open the project in your IDE.
 Navigate to the test directory: src/test/java/edu/ntnu/iir/bidata.
+
 Right-click on the test directory or individual test classes and choose Run All Tests or the equivalent option in your IDE.
 
 Mocking is used in some tests to isolate specific functionalities.

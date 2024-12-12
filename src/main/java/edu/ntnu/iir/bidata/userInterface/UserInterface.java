@@ -49,8 +49,6 @@ public class UserInterface {
         10, LocalDate.now().plusDays(10)));
     FridgeService.addGrocery(new Grocery("Flour", 1, "kg",
         20, LocalDate.now().plusMonths(6)));
-    FridgeService.addGrocery(new Grocery("Potato", 10, "pieces",
-        11, LocalDate.now().plusMonths(1)));
 
     //adding some expired groceries:
     FridgeService.addGrocery(new Grocery("Bread", 1, "loaf", 29,

@@ -123,17 +123,28 @@ public class RecipeService {
     }
   }
 
+  /**
+   * Creates a new smoothie recipe.
+   *
+   * <p>The user is prompted to enter the smoothie name, description, and ingredients. If an
+   * ingredient is not found in the fridge, a placeholder ingredient is added.</p>
+   *
+   * @param scanner the scanner to read user input
+   */
   public static void createSmoothie(Scanner scanner) {
     String smoothieName = InputUtils.readNonEmptyString(scanner, "Enter smoothie name: ");
     if (!smoothieName.toLowerCase().contains("smoothie")) {
       smoothieName += " Smoothie";
     }
 
-    String smoothieDescription = InputUtils.readNonEmptyString(scanner, "Enter smoothie description: ");
-    Smoothie smoothie = new Smoothie(smoothieName, smoothieDescription, LocalDate.now().plusWeeks(2));
+    String smoothieDescription = InputUtils.readNonEmptyString(scanner, "Enter "
+        + "smoothie description: ");
+    Smoothie smoothie = new Smoothie(smoothieName, smoothieDescription,
+        LocalDate.now().plusWeeks(2));
 
     while (true) {
-      String ingredientName = InputUtils.readNonEmptyString(scanner, "Enter ingredient name (or type 'done' to finish): ");
+      String ingredientName = InputUtils.readNonEmptyString(scanner, "Enter"
+          + " ingredient name (or type 'done' to finish): ");
       if (ingredientName.equalsIgnoreCase("done")) {
         break;
       }
@@ -145,12 +156,14 @@ public class RecipeService {
 
       if (matchingGrocery == null) {
         System.out.println("Grocery not found. Adding a placeholder ingredient.");
-        double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity to use: ", 0.0, Double.MAX_VALUE);
+        double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity to"
+            + " use: ", 0.0, Double.MAX_VALUE);
 
         // Select predefined unit
         String unit = InputUtils.selectUnit(scanner);
 
-        double pricePerUnit = InputUtils.readValidatedDouble(scanner, "Enter price per unit (in NOK): ", 0.0, Double.MAX_VALUE);
+        double pricePerUnit = InputUtils.readValidatedDouble(scanner, "Enter "
+            + "price per unit (in NOK): ", 0.0, Double.MAX_VALUE);
         LocalDate expiryDate = LocalDate.now().plusMonths(1);
 
         Grocery placeholder = new Grocery(ingredientName, quantity, unit, pricePerUnit, expiryDate);
@@ -162,7 +175,8 @@ public class RecipeService {
       }
 
       double maxQuantity = matchingGrocery.getQuantity();
-      double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity to use: ", 0.0, maxQuantity);
+      double quantity = InputUtils.readValidatedDouble(scanner, "Enter quantity "
+          + "to use: ", 0.0, maxQuantity);
       if (quantity > maxQuantity) {
         System.out.println("Not enough quantity available. Skipping this ingredient.");
         continue;

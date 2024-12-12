@@ -38,7 +38,7 @@ public class UserInterface {
    *
    * Initializes the application with sample groceries and recipes.
    *
-   * <p>This method populates the fridge with sample grocery items and adds
+   *<p>This method populates the fridge with sample grocery items and adds
    * sample recipes to the recipe book.</p>
    */
   public static void init() {
@@ -205,7 +205,7 @@ public class UserInterface {
   private static void displayMenu() {
     System.out.println("\n=================== In-House Food Waste Management ===================");
     System.out.println(" 0. Exit");
-    System.out.println(" 1. Add Grocery                      | 7. Total Value (Expired Groceries) ");
+    System.out.println(" 1. Add Grocery                      | 7. Total Value (Expired Groceries)");
     System.out.println(" 2. Remove Grocery                   | 8. Add Recipe ");
     System.out.println(" 3. Find Grocery by Name             | 9. View All Recipes");
     System.out.println(" 4. View All Groceries               | 10. Remove Recipe");
@@ -459,7 +459,7 @@ public class UserInterface {
       System.out.println("No recipes found.");
     } else {
       System.out.println("\n--- Recipes ---");
-      recipesToDisplay.forEach(System.out::println);
+      InputUtils.displayRecipes(recipesToDisplay);
     }
   }
 
@@ -490,6 +490,7 @@ public class UserInterface {
       System.out.println("No recipes can be made with the current groceries.");
     } else {
       possibleRecipes.forEach(System.out::println);
+      InputUtils.displayRecipes(possibleRecipes);
     }
   }
 }

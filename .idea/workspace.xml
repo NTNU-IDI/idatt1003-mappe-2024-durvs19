@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45cc7c67-1e15-4acf-a1bb-af055cfafa84" name="Changes" comment="changed assertEquals() method from JUnit 4 to JUnit 5's assertEquals() method">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/Fridge.java" afterDir="false" />
+    <list default="true" id="45cc7c67-1e15-4acf-a1bb-af055cfafa84" name="Changes" comment="specified an example of AAA-method used in test classes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/model/Grocery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/model/Grocery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/userInterface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/userInterface/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/utils/IngredientChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/utils/IngredientChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/utils/InputUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/utils/InputUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +27,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;durvs19&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:NTNU-IDI/idatt1003-mappe-2024-durvs19.git&quot;,
+    &quot;accountId&quot;: &quot;2655728e-59aa-43e7-a6f5-6de12252de96&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -33,54 +51,86 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.GroceryTest.executor": "Run",
-    "JUnit.GroceryTest.testConstructorValidInputs.executor": "Run",
-    "JUnit.GroceryTest.testSetQuantityValid.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main2",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "/Users/durva/Documents/Foodwaste1/src/main/java/edu/ntnu/iir/bidata",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.FoodWasteApp.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FridgeServiceTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FridgeServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FridgeServiceTest.testFindGroceryByName_NullInput.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FridgeServiceTest.testRemoveGrocery_ExistingGroceryWithSufficientQuantity.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.GroceryServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GroceryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GroceryTest.testConstructorValidInputs.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GroceryTest.testSetQuantityValid.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RecipeServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RecipeServiceTest.testAddRecipe.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.RecipeServiceTest.testGetPossibleRecipes_IncludeExpiredGrocery_WithExpiredItems.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SmoothieTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SmoothieTest.testToString.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.java in Foodwaste1.executor&quot;: &quot;Coverage&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;TestNG.&lt;default&gt;.executor&quot;: &quot;Coverage&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main2&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/durva/Documents/Foodwaste1/src/main/java/edu/ntnu/iir/bidata&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="JUnit.GroceryTest">
-    <configuration name="GroceryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+}</component>
+  <component name="RunManager" selected="Application.FoodWasteApp">
+    <configuration name="FoodWasteApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ntnu.iir.bidata.FoodWasteApp" />
+      <module name="Foodwaste1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ntnu.iir.bidata.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FridgeServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Foodwaste1" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GroceryTest" />
+      <option name="MAIN_CLASS_NAME" value="FridgeServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GroceryTest.testConstructorValidInputs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RecipeServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Foodwaste1" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GroceryTest" />
-      <option name="METHOD_NAME" value="testConstructorValidInputs" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="RecipeServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GroceryTest.testSetQuantityValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SmoothieTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Foodwaste1" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GroceryTest" />
-      <option name="METHOD_NAME" value="testSetQuantityValid" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="SmoothieTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in Foodwaste1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Foodwaste1" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -90,11 +140,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.FoodWasteApp" />
+      <item itemvalue="JUnit.RecipeServiceTest" />
+      <item itemvalue="JUnit.SmoothieTest" />
+      <item itemvalue="JUnit.java in Foodwaste1" />
+      <item itemvalue="JUnit.FridgeServiceTest" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.GroceryTest" />
-        <item itemvalue="JUnit.GroceryTest.testConstructorValidInputs" />
-        <item itemvalue="JUnit.GroceryTest.testSetQuantityValid" />
+        <item itemvalue="Application.FoodWasteApp" />
+        <item itemvalue="JUnit.java in Foodwaste1" />
+        <item itemvalue="JUnit.RecipeServiceTest" />
+        <item itemvalue="JUnit.FridgeServiceTest" />
+        <item itemvalue="JUnit.SmoothieTest" />
       </list>
     </recent_temporary>
   </component>
@@ -117,40 +176,406 @@
       <workItem from="1732192658426" duration="262000" />
       <workItem from="1732192934465" duration="2759000" />
       <workItem from="1732209548136" duration="4140000" />
+      <workItem from="1732761299258" duration="1366000" />
+      <workItem from="1732762746448" duration="737000" />
+      <workItem from="1732793671188" duration="137113000" />
+      <workItem from="1733492652675" duration="46000" />
+      <workItem from="1733571490019" duration="4021000" />
+      <workItem from="1733860971469" duration="21256000" />
     </task>
-    <task id="LOCAL-00001" summary="restart">
+    <task id="LOCAL-00014" summary="main method for executing code from userinterface">
       <option name="closed" value="true" />
-      <created>1732193003908</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
+      <created>1732883776696</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1732193003908</updated>
+      <updated>1732883776696</updated>
     </task>
-    <task id="LOCAL-00002" summary="rewrote grocery class using lombok getter to reduce boilerplate code and added more JavaDoc comments">
+    <task id="LOCAL-00015" summary="changed to static">
       <option name="closed" value="true" />
-      <created>1732210732860</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
+      <created>1732883827197</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1732210732860</updated>
+      <updated>1732883827197</updated>
     </task>
-    <task id="LOCAL-00003" summary="added a grocery test class">
+    <task id="LOCAL-00016" summary="changed to static">
       <option name="closed" value="true" />
-      <created>1732235014139</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
+      <created>1732883838988</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1732235014139</updated>
+      <updated>1732883838988</updated>
     </task>
-    <task id="LOCAL-00004" summary="changed assertEquals() method from JUnit 4 to JUnit 5's assertEquals() method">
+    <task id="LOCAL-00017" summary="implemented try - catch to add recipe so code wont break with invalid input">
       <option name="closed" value="true" />
-      <created>1732235439878</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
+      <created>1732884535252</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
       <option name="project" value="LOCAL" />
-      <updated>1732235439878</updated>
+      <updated>1732884535252</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00018" summary="added try catch to display menu so that any non integer input wont break the code / program">
+      <option name="closed" value="true" />
+      <created>1732886457964</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1732886457964</updated>
+    </task>
+    <task id="LOCAL-00019" summary="twist: user can add a smoothie (created smoothie class)">
+      <option name="closed" value="true" />
+      <created>1732934174429</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1732934174429</updated>
+    </task>
+    <task id="LOCAL-00020" summary="implemented create smoothie method in userinterface">
+      <option name="closed" value="true" />
+      <created>1732934212208</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1732934212209</updated>
+    </task>
+    <task id="LOCAL-00021" summary="added option for choosing how many serves the user wants of the smoothie themselves">
+      <option name="closed" value="true" />
+      <created>1732935295153</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1732935295153</updated>
+    </task>
+    <task id="LOCAL-00022" summary="added option for getting smoothie recipes in recipe service class">
+      <option name="closed" value="true" />
+      <created>1732935326332</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1732935326333</updated>
+    </task>
+    <task id="LOCAL-00023" summary="added keyword milkshake to get smoothie recipes method so it will show the recipe if keyword milkshake is also used">
+      <option name="closed" value="true" />
+      <created>1732936841196</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1732936841196</updated>
+    </task>
+    <task id="LOCAL-00024" summary="version control">
+      <option name="closed" value="true" />
+      <created>1732937189278</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1732937189278</updated>
+    </task>
+    <task id="LOCAL-00025" summary="updated recipe class so it shows the ingredients and serves for the smoothie as well as name and description">
+      <option name="closed" value="true" />
+      <created>1732938093065</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1732938093065</updated>
+    </task>
+    <task id="LOCAL-00026" summary="updated viewAllSmoothieRecipes method so user can also choose to see the ingredients, quantity and serves if they want to">
+      <option name="closed" value="true" />
+      <created>1732938182448</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1732938182448</updated>
+    </task>
+    <task id="LOCAL-00027" summary="created smoothie test class. toString() test not working at the moment but it is printing what is required correctly.">
+      <option name="closed" value="true" />
+      <created>1732939865610</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1732939865610</updated>
+    </task>
+    <task id="LOCAL-00028" summary="updated smoothie class with regards to lombok getter and parameter validation">
+      <option name="closed" value="true" />
+      <created>1732939909347</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1732939909347</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added sample expired groceries and sample groceries for smoothie">
+      <option name="closed" value="true" />
+      <created>1732984038774</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1732984038774</updated>
+    </task>
+    <task id="LOCAL-00030" summary="modified so that the init method can call the sample smoothie recipes">
+      <option name="closed" value="true" />
+      <created>1732984546757</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1732984546757</updated>
+    </task>
+    <task id="LOCAL-00031" summary="fixed issue with adding smoothie and linking to view all smoothies option.">
+      <option name="closed" value="true" />
+      <created>1733002552276</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1733002552276</updated>
+    </task>
+    <task id="LOCAL-00032" summary="filter get smoothie recipes method so it will still store the smoothie even if it doesnt contain word &quot;smoothie&quot; in it">
+      <option name="closed" value="true" />
+      <created>1733002619078</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1733002619079</updated>
+    </task>
+    <task id="LOCAL-00033" summary="modified smoothie class so it doesnt need to show unit of the smoothie (which is litres/ml)">
+      <option name="closed" value="true" />
+      <created>1733002689391</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1733002689391</updated>
+    </task>
+    <task id="LOCAL-00034" summary="created a util class for userinterface to avoid duplicating code and make application easier to maintain.">
+      <option name="closed" value="true" />
+      <created>1733003640856</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1733003640857</updated>
+    </task>
+    <task id="LOCAL-00035" summary="implemented inpututils class into user interface to reduce duplication and keep code more tidy">
+      <option name="closed" value="true" />
+      <created>1733004992148</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1733004992148</updated>
+    </task>
+    <task id="LOCAL-00036" summary="changed display menu layout">
+      <option name="closed" value="true" />
+      <created>1733165079604</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1733165079604</updated>
+    </task>
+    <task id="LOCAL-00037" summary="added option to find grocery by name OR expiry date">
+      <option name="closed" value="true" />
+      <created>1733167554329</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1733167554329</updated>
+    </task>
+    <task id="LOCAL-00038" summary="updated userinterface based on added options in fridge service class">
+      <option name="closed" value="true" />
+      <created>1733167610514</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1733167610514</updated>
+    </task>
+    <task id="LOCAL-00039" summary="updated fridge service test">
+      <option name="closed" value="true" />
+      <created>1733169848666</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1733169848666</updated>
+    </task>
+    <task id="LOCAL-00040" summary="remove a grocery option added">
+      <option name="closed" value="true" />
+      <created>1733171828851</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1733171828851</updated>
+    </task>
+    <task id="LOCAL-00041" summary="remove a grocery option incorporated into user interface">
+      <option name="closed" value="true" />
+      <created>1733171855118</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1733171855118</updated>
+    </task>
+    <task id="LOCAL-00042" summary="improved fridge service tests">
+      <option name="closed" value="true" />
+      <created>1733171876115</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1733171876115</updated>
+    </task>
+    <task id="LOCAL-00043" summary="created a utility class to reduce coupling between grocery service and recipe service class. (checks if a grocery is expired + if required ingredients are available)">
+      <option name="closed" value="true" />
+      <created>1733187336105</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1733187336105</updated>
+    </task>
+    <task id="LOCAL-00044" summary="validated user input for expired groceries (y/n) so user cannot type invalid input">
+      <option name="closed" value="true" />
+      <created>1733188540054</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1733188540054</updated>
+    </task>
+    <task id="LOCAL-00045" summary="modified getPossibleRecipes method to handle case sensitivity">
+      <option name="closed" value="true" />
+      <created>1733189055174</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1733189055174</updated>
+    </task>
+    <task id="LOCAL-00046" summary="updated find groceries by name method to be able to find multiple groceries with the same name">
+      <option name="closed" value="true" />
+      <created>1733239082837</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1733239082837</updated>
+    </task>
+    <task id="LOCAL-00047" summary="added input validation to findGroceriesByName method">
+      <option name="closed" value="true" />
+      <created>1733239952188</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1733239952188</updated>
+    </task>
+    <task id="LOCAL-00048" summary="created test class for recipe service class">
+      <option name="closed" value="true" />
+      <created>1733240675623</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1733240675623</updated>
+    </task>
+    <task id="LOCAL-00049" summary="made name and description final">
+      <option name="closed" value="true" />
+      <created>1733240879922</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1733240879922</updated>
+    </task>
+    <task id="LOCAL-00050" summary="made name and description final">
+      <option name="closed" value="true" />
+      <created>1733241066943</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1733241066946</updated>
+    </task>
+    <task id="LOCAL-00051" summary="javadoc comments">
+      <option name="closed" value="true" />
+      <created>1733243429471</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1733243429472</updated>
+    </task>
+    <task id="LOCAL-00052" summary="javadoc comments">
+      <option name="closed" value="true" />
+      <created>1733245352201</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1733245352201</updated>
+    </task>
+    <task id="LOCAL-00053" summary="adding javadoc comments">
+      <option name="closed" value="true" />
+      <created>1733246311227</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1733246311227</updated>
+    </task>
+    <task id="LOCAL-00054" summary="editing readme">
+      <option name="closed" value="true" />
+      <created>1733246702115</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1733246702116</updated>
+    </task>
+    <task id="LOCAL-00055" summary="editing readme">
+      <option name="closed" value="true" />
+      <created>1733246773508</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1733246773509</updated>
+    </task>
+    <task id="LOCAL-00056" summary="editing readme">
+      <option name="closed" value="true" />
+      <created>1733247066141</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1733247066141</updated>
+    </task>
+    <task id="LOCAL-00057" summary="put smoothie methods into recipe methods to reduce options on display menu">
+      <option name="closed" value="true" />
+      <created>1733270748425</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1733270748425</updated>
+    </task>
+    <task id="LOCAL-00058" summary="added a predefined list of units and incorporated into user interface as well">
+      <option name="closed" value="true" />
+      <created>1733271160131</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1733271160131</updated>
+    </task>
+    <task id="LOCAL-00059" summary="added create smoothie method into recipe service class for cleaner code.">
+      <option name="closed" value="true" />
+      <created>1733271303256</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1733271303256</updated>
+    </task>
+    <task id="LOCAL-00060" summary="modified display menu method to show groceries in a table format (more user friendly)">
+      <option name="closed" value="true" />
+      <created>1733271706586</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1733271706586</updated>
+    </task>
+    <task id="LOCAL-00061" summary="javadoc">
+      <option name="closed" value="true" />
+      <created>1733492566699</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1733492566700</updated>
+    </task>
+    <task id="LOCAL-00062" summary="specified an example of AAA-method used in test classes.">
+      <option name="closed" value="true" />
+      <created>1733877285499</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1733877285499</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,10 +593,45 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="restart" />
-    <MESSAGE value="rewrote grocery class using lombok getter to reduce boilerplate code and added more JavaDoc comments" />
-    <MESSAGE value="added a grocery test class" />
-    <MESSAGE value="changed assertEquals() method from JUnit 4 to JUnit 5's assertEquals() method" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed assertEquals() method from JUnit 4 to JUnit 5's assertEquals() method" />
+    <MESSAGE value="created a util class for userinterface to avoid duplicating code and make application easier to maintain." />
+    <MESSAGE value="implemented inpututils class into user interface to reduce duplication and keep code more tidy" />
+    <MESSAGE value="changed display menu layout" />
+    <MESSAGE value="added option to find grocery by name OR expiry date" />
+    <MESSAGE value="updated userinterface based on added options in fridge service class" />
+    <MESSAGE value="updated fridge service test" />
+    <MESSAGE value="remove a grocery option added" />
+    <MESSAGE value="remove a grocery option incorporated into user interface" />
+    <MESSAGE value="improved fridge service tests" />
+    <MESSAGE value="created a utility class to reduce coupling between grocery service and recipe service class. (checks if a grocery is expired + if required ingredients are available)" />
+    <MESSAGE value="validated user input for expired groceries (y/n) so user cannot type invalid input" />
+    <MESSAGE value="modified getPossibleRecipes method to handle case sensitivity" />
+    <MESSAGE value="updated find groceries by name method to be able to find multiple groceries with the same name" />
+    <MESSAGE value="added input validation to findGroceriesByName method" />
+    <MESSAGE value="created test class for recipe service class" />
+    <MESSAGE value="made name and description final" />
+    <MESSAGE value="javadoc comments" />
+    <MESSAGE value="adding javadoc comments" />
+    <MESSAGE value="editing readme" />
+    <MESSAGE value="put smoothie methods into recipe methods to reduce options on display menu" />
+    <MESSAGE value="added a predefined list of units and incorporated into user interface as well" />
+    <MESSAGE value="added create smoothie method into recipe service class for cleaner code." />
+    <MESSAGE value="modified display menu method to show groceries in a table format (more user friendly)" />
+    <MESSAGE value="javadoc" />
+    <MESSAGE value="specified an example of AAA-method used in test classes." />
+    <option name="LAST_COMMIT_MESSAGE" value="specified an example of AAA-method used in test classes." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.InputMismatchException" package="java.util" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Foodwaste1$java_in_Foodwaste1.ic" NAME="java in Foodwaste1 Coverage Results" MODIFIED="1733240570223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Foodwaste1$_default_.ic" NAME="&lt;default&gt; Coverage Results" MODIFIED="1732994811152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

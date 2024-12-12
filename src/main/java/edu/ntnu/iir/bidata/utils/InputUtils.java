@@ -1,6 +1,7 @@
 package edu.ntnu.iir.bidata.utils;
 
 import edu.ntnu.iir.bidata.model.Grocery;
+import edu.ntnu.iir.bidata.model.Recipe;
 import edu.ntnu.iir.bidata.services.GroceryService;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -106,29 +107,9 @@ public class InputUtils {
     }
   }
 
-  /**
-   * Reads a yes/no response from the user.
-   *
-   * @param scanner the {@code Scanner} object for reading user input
-   * @param prompt  The message to display to the user.
-   * @return {@code true} if the user enters 'y' or 'yes', {@code false} if 'n' or 'no'
-   */
-  public static boolean readYesNo(Scanner scanner, String prompt) {
-    while (true) {
-      System.out.print(prompt + " (y/n): ");
-      String input = scanner.nextLine().trim().toLowerCase();
-      if (input.equals("y") || input.equals("yes")) {
-        return true;
-      } else if (input.equals("n") || input.equals("no")) {
-        return false;
-      } else {
-        System.out.println("Invalid input. Please enter 'y' or 'n'.");
-      }
-    }
-  }
-
   // Predefined list of units
-  private static final List<String> UNITS = List.of("kg", "liters", "pieces", "cups", "tablespoons");
+  private static final List<String> UNITS = List.of("kg", "liters", "pieces", "cups",
+      "tablespoons");
 
   /**
   /**
@@ -143,10 +124,20 @@ public class InputUtils {
       System.out.printf("%d. %s%n", i + 1, UNITS.get(i));
     }
 
-    int choice = readValidatedInt(scanner, "Choose a unit (1-" + UNITS.size() + "): ", 1, UNITS.size());
+    int choice = readValidatedInt(scanner, "Choose a unit (1-" + UNITS.size() + "): ",
+        1, UNITS.size());
     return UNITS.get(choice - 1);
   }
 
+  /**
+   * Displays the list of groceries.
+   *
+   * <p>If the list of groceries is empty, this method will print a message
+   * indicating that no groceries are available. Otherwise, it will display
+   * the details of each grocery item in the list.</p>
+   *
+   * @param groceries the list of grocery items to display. Must not be null.
+   */
   public static void displayGroceries(List<Grocery> groceries) {
     if (groceries.isEmpty()) {
       System.out.println("No groceries available.");
@@ -154,10 +145,10 @@ public class InputUtils {
     }
 
     // Print table headers
-    System.out.println("\n+--------------------------------------------------------------------------+");
+    System.out.println("\n+---------------------------------------------------------------------+");
     System.out.printf("| %-20s | %-10s | %-15s | %-15s | %-10s |\n",
         "Name", "Quantity", "Price per Unit (NOK)", "Expiry Date", "Status");
-    System.out.println("+--------------------------------------------------------------------------+");
+    System.out.println("+-----------------------------------------------------------------------+");
 
     // Print each grocery item
     for (Grocery grocery : groceries) {
@@ -167,8 +158,44 @@ public class InputUtils {
           grocery.getPricePerUnit(), grocery.getExpiryDate(), status);
     }
 
-    System.out.println("+--------------------------------------------------------------------------+");
+    System.out.println("+-----------------------------------------------------------------------+");
   }
+
+  /**
+   * Displays the recipes in a table format.
+   *
+   * @param recipes List of recipes to display.
+   */
+  public static void displayRecipes(List<Recipe> recipes) {
+    if (recipes.isEmpty()) {
+      System.out.println("No recipes available.");
+      return;
+    }
+
+    // Print table headers
+    System.out.println("\n+---------------------------------------------------------------------"
+        + "---------------------------------------------------------------------+");
+    System.out.printf("| %-25s | %-50s | %-55s | %-6s |\n", "Name", "Description", "Ingredients",
+        "Serves");
+    System.out.println("+-----------------------------------------------------------------------"
+        + "-------------------------------------------------------------+");
+
+    // Print each recipe
+    for (Recipe recipe : recipes) {
+      String ingredients = recipe.getIngredients().toString();
+      System.out.printf("| %-25s | %-50s | %-45s | %-6d |\n",
+          recipe.getName(),
+          recipe.getDescription(),
+          ingredients,
+          recipe.getServes());
+    }
+
+    System.out.println("+--------------------------------------------------------------"
+        + "----------------------------------------------------------------------------+");
+  }
+
+
+
 
 
 

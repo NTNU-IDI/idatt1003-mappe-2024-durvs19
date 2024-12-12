@@ -53,7 +53,7 @@ public class Grocery {
     if (expiryDate == null) {
       throw new IllegalArgumentException("Expiry date cannot be null");
     }
-    this.name = name;
+    this.name = name.toLowerCase();
     this.quantity = quantity;
     this.unit = unit;
     this.pricePerUnit = pricePerUnit;

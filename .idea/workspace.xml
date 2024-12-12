@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45cc7c67-1e15-4acf-a1bb-af055cfafa84" name="Changes" comment="specified an example of AAA-method used in test classes.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/model/Grocery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/model/Grocery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/userInterface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/userInterface/UserInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/utils/IngredientChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/utils/IngredientChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/utils/InputUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/iir/bidata/utils/InputUtils.java" afterDir="false" />
-    </list>
+    <list default="true" id="45cc7c67-1e15-4acf-a1bb-af055cfafa84" name="Changes" comment="finish" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -181,23 +174,7 @@
       <workItem from="1732793671188" duration="137113000" />
       <workItem from="1733492652675" duration="46000" />
       <workItem from="1733571490019" duration="4021000" />
-      <workItem from="1733860971469" duration="21256000" />
-    </task>
-    <task id="LOCAL-00014" summary="main method for executing code from userinterface">
-      <option name="closed" value="true" />
-      <created>1732883776696</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1732883776696</updated>
-    </task>
-    <task id="LOCAL-00015" summary="changed to static">
-      <option name="closed" value="true" />
-      <created>1732883827197</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1732883827197</updated>
+      <workItem from="1733860971469" duration="24300000" />
     </task>
     <task id="LOCAL-00016" summary="changed to static">
       <option name="closed" value="true" />
@@ -575,7 +552,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733877285499</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="readme">
+      <option name="closed" value="true" />
+      <created>1734006235320</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1734006235320</updated>
+    </task>
+    <task id="LOCAL-00064" summary="finish">
+      <option name="closed" value="true" />
+      <created>1734006250542</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1734006250542</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,8 +586,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="created a util class for userinterface to avoid duplicating code and make application easier to maintain." />
-    <MESSAGE value="implemented inpututils class into user interface to reduce duplication and keep code more tidy" />
     <MESSAGE value="changed display menu layout" />
     <MESSAGE value="added option to find grocery by name OR expiry date" />
     <MESSAGE value="updated userinterface based on added options in fridge service class" />
@@ -618,7 +609,9 @@
     <MESSAGE value="modified display menu method to show groceries in a table format (more user friendly)" />
     <MESSAGE value="javadoc" />
     <MESSAGE value="specified an example of AAA-method used in test classes." />
-    <option name="LAST_COMMIT_MESSAGE" value="specified an example of AAA-method used in test classes." />
+    <MESSAGE value="readme" />
+    <MESSAGE value="finish" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -49,12 +49,8 @@ public class UserInterface {
         10, LocalDate.now().plusDays(10)));
     FridgeService.addGrocery(new Grocery("Flour", 1, "kg",
         20, LocalDate.now().plusMonths(6)));
-    FridgeService.addGrocery(new Grocery("Onion", 6, "pieces",
-        9, LocalDate.now().plusMonths(1)));
     FridgeService.addGrocery(new Grocery("Potato", 10, "pieces",
         11, LocalDate.now().plusMonths(1)));
-    FridgeService.addGrocery(new Grocery("Cheese", 0.5, "kg",
-        32, LocalDate.now().plusWeeks(3)));
 
     //adding some expired groceries:
     FridgeService.addGrocery(new Grocery("Bread", 1, "loaf", 29,
@@ -65,8 +61,6 @@ public class UserInterface {
         LocalDate.now().minusDays(4)));
     FridgeService.addGrocery(new Grocery("Yoghurt", 0.25, "kg", 16,
         LocalDate.now().minusDays(3)));
-    FridgeService.addGrocery(new Grocery("eggs", 2, "pieces", 10,
-        LocalDate.now().minusDays(4)));
 
     //adding some groceries for smoothies:
     FridgeService.addGrocery(new Grocery("Strawberries", 2, "cups",
@@ -75,10 +69,6 @@ public class UserInterface {
         8, LocalDate.now().plusDays(5)));
     FridgeService.addGrocery(new Grocery("Yoghurt", 0.5, "kg",
         22, LocalDate.now().plusDays(10)));
-    FridgeService.addGrocery(new Grocery("Avocado", 4, "pieces",
-        9, LocalDate.now().plusDays(12)));
-    FridgeService.addGrocery(new Grocery("lemon Juice", 0.5, "tablespoons",
-        4, LocalDate.now().plusMonths(3)));
     FridgeService.addGrocery(new Grocery("Mango", 4, "pieces",
         10, LocalDate.now().plusDays(7)));
 
